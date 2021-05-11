@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE>
+<html lang="en" >
 <head>
 <title>MyApp</title>
 <style>

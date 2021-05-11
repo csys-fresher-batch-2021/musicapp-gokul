@@ -1,5 +1,5 @@
 package in.gokul.services;
-import in.gokul.model.Language;
+import in.gokul.model.Languages;
 import in.gokul.validation.Validation;
 
 import java.util.ArrayList;
@@ -9,13 +9,13 @@ import java.util.List;
 
 public class LanguageServices {
 
-	static List <Language> LanguageList= new ArrayList<Language>();
+	private static final List <Languages> LanguageList= new ArrayList<Languages>();
 
 	static 
 	{
-		Language language1=new Language("Tamil");
-		Language language2=new Language("Hindi");
-		Language language3=new Language("English");
+		Languages language1=new Languages("Tamil");
+		Languages language2=new Languages("Hindi");
+		Languages language3=new Languages("English");
 		LanguageList.add(language1);
 		LanguageList.add(language2);
 		LanguageList.add(language3);
@@ -27,7 +27,7 @@ public class LanguageServices {
 	 */
 	public static void displayAvailableLanguages() {
 		System.out.println("----Available Languages----");
-		for (Language language : LanguageList) {
+		for (Languages language : LanguageList) {
 			System.out.println(language);
 		}
 
@@ -43,10 +43,10 @@ public class LanguageServices {
 		boolean isAvailable = false;
 	
 		if (Validation.stringValidator(language)) {
-		//	language = language.toUpperCase();
-            System.out.println("hii");
-         //   Language input=new Language; 
-          for (Language languages : LanguageList) {
+
+  
+    
+          for (Languages languages : LanguageList) {
 				
             if(language.equals(languages.getLanguage()))
             {
@@ -64,12 +64,12 @@ public class LanguageServices {
 	 * @return
 	 */
 	public static int totalLanguagesCount() {
-		int songsCount = LanguageList.size();
-		return songsCount;
+		
+		return  LanguageList.size();
 
 	}
 	
-	public static  List<Language> getAllLanguages()
+	public static  List<Languages> getAllLanguages()
 	{
 		return LanguageList;
 		

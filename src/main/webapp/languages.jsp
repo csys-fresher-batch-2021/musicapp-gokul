@@ -1,10 +1,10 @@
-<%@page import="in.gokul.model.Language"%>
+<%@page import="in.gokul.model.Languages"%>
 <%@page import="java.util.List"%>
 <%@page import="in.gokul.services.LanguageServices"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>languages</title>
@@ -27,21 +27,21 @@
 
 				<thead>
 					<tr>
-						<th>S.no</th>
-						<th>Language Name</th>
+						<th scope="col">S.no</th>
+						<th scope="col">Language Name</th>
 
 					</tr>
 				</thead>
 				<tbody>
 					<%
-					List<Language> languageList = LanguageServices.getAllLanguages();
+					List<Languages> languageList = LanguageServices.getAllLanguages();
 					int i = 0;
-					for (Language languages : languageList) {
+					for (Languages language : languageList) {
 						i++;
 					%>
 					<tr>
 						<td><%=i%>
-						<td><%=languages.getLanguage()%></td>
+						<td><%=language.getLanguage()%></td>
 					</tr>
 					<%
 					}
@@ -50,21 +50,19 @@
 			</table>
 			<h1>Select Your Preferred Languages</h1>
 
-		
-		
+
+
 			<%
-			for (Language languages : languageList)
-			{
+			for (Languages language : languageList) {
 			%>
-			<br><br>
-			<input type="checkbox" name= "<%=languages.getLanguage() %>"> <%=languages.getLanguage()%>
+			<br>
+			<br> <input type="checkbox" name="<%=language.getLanguage()%>">
+			<%=language.getLanguage()%>
 			<%
 			}
 			%>
-			<br><br>
-			 <a href="index.jsp">back --</a>
-		
-		     <a href="languages.jsp">next</a>
+			<br>
+			<br> <a href="index.jsp">back --</a> <a href="languages.jsp">next</a>
 
 
 		</div>

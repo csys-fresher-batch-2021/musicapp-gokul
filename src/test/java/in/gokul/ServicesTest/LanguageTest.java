@@ -27,7 +27,7 @@ public class LanguageTest {
 		if (LanguageServices.isLanguageAvailable(language)) {
 			available = "true";
 		} 
-		assertEquals(available, "true");
+		assertEquals( "true",available);
 
 	}
 
@@ -37,6 +37,7 @@ public class LanguageTest {
 	@Test
 	public void displayAvailableLanguageTest() {
 		LanguageServices.displayAvailableLanguages();
+	
 
 	}
 
@@ -46,7 +47,7 @@ public class LanguageTest {
 	@Test
 	public void TotalLanguagesCount() {
 		int languagesCount =LanguageServices.totalLanguagesCount();
-		assertEquals(languagesCount, 3);
+		assertEquals(3,languagesCount);
 
 	}
 

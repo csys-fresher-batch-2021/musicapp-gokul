@@ -1,5 +1,5 @@
-
-<html>
+<!DOCTYPE>
+<html lang="en" >
 <head>
 <title>MyApp</title>
 <style>
@@ -20,7 +20,7 @@ background-image:
 	 <h2><font style="color:red">Welcome To the world of Music!</font></h2><br/><br/>
 			
 	
-			<h5><font style="color:green"> <b></b><a href = "Login.jsp">Login</a> To Experience the joy of Music!</h5>
+			<h5><font style="color:green"></font><a href = "Login.jsp">Login</a> To Experience the joy of Music!</h5>
 			</div>
 			
 	    
