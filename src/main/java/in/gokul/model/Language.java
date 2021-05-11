@@ -3,12 +3,23 @@ package in.gokul.model;
 public class Language {
 	
 
-    public String language;
+    private String language;
 
 	public Language(String language)
 	{
 		this.language=language;
 	}
+	
+	public String getLanguage()
+	{
+		return language;
+		
+	}
+	public void setLanguage(String language)
+	{
+		this.language=language;
+	}
+	
 	
 	
 }

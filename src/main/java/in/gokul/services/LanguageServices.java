@@ -48,7 +48,7 @@ public class LanguageServices {
          //   Language input=new Language; 
           for (Language languages : LanguageList) {
 				
-            if(language.equals(languages.language))
+            if(language.equals(languages.getLanguage()))
             {
             	isAvailable=true;
             }
@@ -67,6 +67,12 @@ public class LanguageServices {
 		int songsCount = LanguageList.size();
 		return songsCount;
 
+	}
+	
+	public static  List<Language> getAllLanguages()
+	{
+		return LanguageList;
+		
 	}
 
 }
