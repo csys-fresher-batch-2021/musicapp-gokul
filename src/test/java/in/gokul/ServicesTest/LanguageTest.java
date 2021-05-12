@@ -31,15 +31,7 @@ public class LanguageTest {
 
 	}
 
-	/**
-	 * checks for displaying available languages
-	 */
-	@Test
-	public void displayAvailableLanguageTest() {
-		LanguageServices.displayAvailableLanguages();
 	
-
-	}
 
 	/**
 	 * gets the total languages Count

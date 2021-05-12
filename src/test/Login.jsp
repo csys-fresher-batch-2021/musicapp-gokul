@@ -1,18 +1,27 @@
 <!DOCTYPE>
 <html lang="en" >
 <head>
+
 <title>Music</title>
+<style type="text/css">
+.center
+{
+text-align:center;
+
+}
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-	      <form method="post" >
+	<div class=center>
+	      <form action="LoginServlet" >
 	            <br>
-                <label for="username">Enter Your username:</label>
-                <input type="text" name="username" id="username" placeholder="Enter UserName" required><br>
+                <label for="userName">Enter Your userName:</label>
+                <input type="text" name="userName" id="userName" placeholder="Enter userName" required><br>
                 <br>
-                 <label for="passwrd">Enter Password: </label> 
-                 <input type="password" name="passwrd" id="passwrd" placeholder="Enter Password" required> <br>
+                 <label for="password">Enter Your Password: </label> 
+                 <input type="password" name="password" id="password" placeholder="Enter Password" required> <br>
                  <br> 
                 <button class="btn btn-primary">Sign in</button>
                  <button class="btn btn-danger">forgot password</button>
@@ -25,7 +34,7 @@
                
             </form>
 		
-	    
+	   </div> 
 
 	</main>
 </body>

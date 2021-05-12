@@ -17,10 +17,10 @@ background-image:
 	<div class="center">
 
 					<h1> search ! listen ! Enjoy !</h1><br/><br/><br/>
-	 <h2><font style="color:red">Welcome To the world of Music!</font></h2><br/><br/>
+	          <h2>Welcome To the world of Music!</h2><br/><br/>
 			
 	
-			<h5><font style="color:green"></font><a href = "Login.jsp">Login</a> To Experience the joy of Music!</h5>
+			<h5><a href = "Login.jsp">Login</a> To Experience the joy of Music!</h5>
 			</div>
 			
 	    

@@ -1,6 +1,10 @@
 package in.gokul.validation;
 
 public class Validation {
+	private Validation()
+	{
+		
+	}
 	/**
 	 * Accepts input language and checks whether the string is not null returns true
 	 * if not null else return false
@@ -16,12 +20,12 @@ public class Validation {
 				if ((language == null )|| (language.trim().equals(" ")) || (language.contains(specialCharacters))) 
 				{
 					isvalid = false;
-					System.out.println("helo");
+					
 				}
 			
 		} catch (Exception e) {
 			isvalid=false;
-			System.out.println(e.getMessage());
+		
 		}
 		return isvalid;
 	}

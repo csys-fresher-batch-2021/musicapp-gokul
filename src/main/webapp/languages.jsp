@@ -24,6 +24,7 @@
 			<h1>Available Languages</h1>
 			<br>
 			<table class="table table-bordered">
+			<caption> List of Languages</caption>
 
 				<thead>
 					<tr>
@@ -62,6 +63,7 @@
 			}
 			%>
 			<br>
+		
 			<br> <a href="index.jsp">back --</a> <a href="languages.jsp">next</a>
 
 

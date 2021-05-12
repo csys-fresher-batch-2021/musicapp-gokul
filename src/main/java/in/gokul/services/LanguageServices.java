@@ -8,8 +8,12 @@ import java.util.List;
 
 
 public class LanguageServices {
+	private LanguageServices()
+	{
+		
+	}
 
-	private static final List <Languages> LanguageList= new ArrayList<Languages>();
+	private static final List <Languages> LanguageList= new ArrayList<>();
 
 	static 
 	{
@@ -22,16 +26,7 @@ public class LanguageServices {
 		
 	}
 	
-	/**
-	 * it displays all the available languages
-	 */
-	public static void displayAvailableLanguages() {
-		System.out.println("----Available Languages----");
-		for (Languages language : LanguageList) {
-			System.out.println(language);
-		}
 
-	}
 
 	/**
 	 * accepts language as input checks for language available or not
@@ -74,5 +69,6 @@ public class LanguageServices {
 		return LanguageList;
 		
 	}
+	
 
 }
