@@ -13,8 +13,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavId">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="index.jsp">Home
-						<span class="sr-only">(current)</span>
+				<li class="nav-item active"><a class="nav-link"
+					href="index.jsp">Home <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="languages.jsp">Languages</a></li>
 				<li class="nav-item dropdown"><a
@@ -26,11 +26,11 @@
 					</div></li>
 			</ul>
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="Login.jsp">Login</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="NewUserRegistration.jsp">Register</a>
-				</li>
-				
+				<li class="nav-item active"><a class="nav-link"
+					href="Login.jsp">Login</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="NewUserRegistration.jsp">Register</a></li>
+
 			</ul>
 
 		</div>

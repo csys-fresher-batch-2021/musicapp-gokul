@@ -24,7 +24,7 @@
 			<h1>Available Languages</h1>
 			<br>
 			<table class="table table-bordered">
-			<caption> List of Languages</caption>
+				<caption>List of Languages</caption>
 
 				<thead>
 					<tr>
@@ -56,15 +56,14 @@
 			<%
 			for (Languages language : languageList) {
 			%>
-			<br>
-			<br> <input type="checkbox" name="<%=language.getLanguage()%>">
+			<br> <br> <input type="checkbox"
+				name="<%=language.getLanguage()%>">
 			<%=language.getLanguage()%>
 			<%
 			}
 			%>
-			<br>
-		
-			<br> <a href="index.jsp">back --</a> <a href="languages.jsp">next</a>
+			<br> <br> <a href="index.jsp">back --</a> <a
+				href="languages.jsp">next</a>
 
 
 		</div>

@@ -1,10 +1,10 @@
 package in.gokul.validation;
 
 public class Validation {
-	private Validation()
-	{
-		
+	private Validation() {
+
 	}
+
 	/**
 	 * Accepts input language and checks whether the string is not null returns true
 	 * if not null else return false
@@ -16,16 +16,15 @@ public class Validation {
 		boolean isvalid = true;
 		String specialCharacters = "!@#$%&*()'+,-./:;<=>?[]^_{}";
 		try {
-			
-				if ((language == null )|| (language.trim().equals(" ")) || (language.contains(specialCharacters))) 
-				{
-					isvalid = false;
-					
-				}
-			
+
+			if ((language == null) || (language.trim().equals(" ")) || (language.contains(specialCharacters))) {
+				isvalid = false;
+
+			}
+
 		} catch (Exception e) {
-			isvalid=false;
-		
+			isvalid = false;
+
 		}
 		return isvalid;
 	}
