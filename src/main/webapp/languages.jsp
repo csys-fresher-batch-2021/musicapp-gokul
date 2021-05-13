@@ -19,17 +19,14 @@
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<%
-		String loggedInUsername = (String)session.getAttribute("Logged_In_User");
-		%>
-		Welcome   <%=loggedInUsername%> !!
-		
+
+
 		<div class="center">
-	
+
 			<h1>Available Languages</h1>
 			<br>
 			<table class="table table-bordered">
-				<caption> ----Languages list---</caption>
+				<caption>----Languages list---</caption>
 
 				<thead>
 					<tr>
@@ -41,9 +38,9 @@
 				<tbody>
 					<%
 					List<Language> languageList = LanguageServices.getAllLanguages();
-								int i = 0;
-								for (Language item : languageList) {
-									i++;
+					int i = 0;
+					for (Language item : languageList) {
+						i++;
 					%>
 					<tr>
 						<td><%=i%>
@@ -72,7 +69,7 @@
 
 
 		</div>
-		
+
 	</main>
 </body>
 </html>

@@ -14,10 +14,10 @@ public class Validation {
 	 */
 	public static boolean stringValidator(String language) {
 		boolean isvalid = true;
-		
+
 		try {
 
-			if ((language == null) || (language.trim().equals(" ")) ) {
+			if ((language == null) || (language.trim().equals(""))) {
 				isvalid = false;
 
 			}

@@ -11,7 +11,7 @@ public class LanguageServices {
 
 	}
 
-	private static final List<Language>languageList = new ArrayList<>();
+	private static final List<Language> languageList = new ArrayList<>();
 
 	static {
 		Language language1 = new Language("Tamil");
@@ -22,8 +22,6 @@ public class LanguageServices {
 		languageList.add(language3);
 
 	}
-
-	
 
 	/**
 	 * it returns the total number of languages count.

@@ -9,37 +9,15 @@ import in.gokul.validation.Validation;
 
 import org.junit.Test;
 
-
-
-
-
 public class LanguageTest {
-
-	/**
-	 * Checks that if the language is available or not If available return true else
-	 * false
-	 */
-	@Test
-	public void isAvailableLanguageTest() {
-
-		String language = "Tamil";
-		String available = "false";
-		if (LanguageServices.isLanguageAvailable(language)) {
-			available = "true";
-		} 
-		assertEquals( "true",available);
-
-	}
-
-	
 
 	/**
 	 * gets the total languages Count
 	 */
 	@Test
-	public void TotalLanguagesCount() {
-		int languagesCount =LanguageServices.totalLanguagesCount();
-		assertEquals(3,languagesCount);
+	public void totalLanguagesCount() {
+		int languagesCount = LanguageServices.totalLanguagesCount();
+		assertEquals(3, languagesCount);
 
 	}
 
@@ -48,7 +26,7 @@ public class LanguageTest {
 	 *
 	 */
 	@Test
-	public void ValidationwithCorrectDetails() {
+	public void validationWithCorrectDetails() {
 		String language = "Tamil";
 		boolean valid = Validation.stringValidator(language);
 		System.out.println(valid);
@@ -64,7 +42,7 @@ public class LanguageTest {
 		String language = null;
 		boolean valid = Validation.stringValidator(language);
 		assertFalse(valid);
-		
+
 	}
 
 }
