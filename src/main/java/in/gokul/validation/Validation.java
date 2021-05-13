@@ -14,10 +14,10 @@ public class Validation {
 	 */
 	public static boolean stringValidator(String language) {
 		boolean isvalid = true;
-		String specialCharacters = "!@#$%&*()'+,-./:;<=>?[]^_{}";
+		
 		try {
 
-			if ((language == null) || (language.trim().equals(" ")) || (language.contains(specialCharacters))) {
+			if ((language == null) || (language.trim().equals(" ")) ) {
 				isvalid = false;
 
 			}

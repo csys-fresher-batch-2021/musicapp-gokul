@@ -1,4 +1,4 @@
-<%@page import="in.gokul.model.Languages"%>
+<%@page import="in.gokul.model.Language"%>
 <%@page import="java.util.List"%>
 <%@page import="in.gokul.services.LanguageServices"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -19,12 +19,17 @@
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-
+		<%
+		String loggedInUsername = (String)session.getAttribute("Logged_In_User");
+		%>
+		Welcome   <%=loggedInUsername%> !!
+		
 		<div class="center">
+	
 			<h1>Available Languages</h1>
 			<br>
 			<table class="table table-bordered">
-				<caption>List of Languages</caption>
+				<caption> ----Languages list---</caption>
 
 				<thead>
 					<tr>
@@ -35,14 +40,14 @@
 				</thead>
 				<tbody>
 					<%
-					List<Languages> languageList = LanguageServices.getAllLanguages();
-					int i = 0;
-					for (Languages language : languageList) {
-						i++;
+					List<Language> languageList = LanguageServices.getAllLanguages();
+								int i = 0;
+								for (Language item : languageList) {
+									i++;
 					%>
 					<tr>
 						<td><%=i%>
-						<td><%=language.getLanguage()%></td>
+						<td><%=item.getLanguage()%></td>
 					</tr>
 					<%
 					}
@@ -54,11 +59,11 @@
 
 
 			<%
-			for (Languages language : languageList) {
+			for (Language item : languageList) {
 			%>
 			<br> <br> <input type="checkbox"
-				name="<%=language.getLanguage()%>">
-			<%=language.getLanguage()%>
+				name="<%=item.getLanguage()%>">
+			<%=item.getLanguage()%>
 			<%
 			}
 			%>
@@ -67,6 +72,7 @@
 
 
 		</div>
+		
 	</main>
 </body>
 </html>

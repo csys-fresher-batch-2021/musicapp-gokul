@@ -1,10 +1,10 @@
 package in.gokul.model;
 
-public class Languages {
+public class Language {
 
 	private String language;
 
-	public Languages(String language) {
+	public Language(String language) {
 		this.language = language;
 	}
 

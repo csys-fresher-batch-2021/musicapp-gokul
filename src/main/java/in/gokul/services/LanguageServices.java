@@ -1,6 +1,6 @@
 package in.gokul.services;
 
-import in.gokul.model.Languages;
+import in.gokul.model.Language;
 import in.gokul.validation.Validation;
 
 import java.util.ArrayList;
@@ -11,40 +11,19 @@ public class LanguageServices {
 
 	}
 
-	private static final List<Languages>languageList = new ArrayList<>();
+	private static final List<Language>languageList = new ArrayList<>();
 
 	static {
-		Languages language1 = new Languages("Tamil");
-		Languages language2 = new Languages("Hindi");
-		Languages language3 = new Languages("English");
+		Language language1 = new Language("Tamil");
+		Language language2 = new Language("Hindi");
+		Language language3 = new Language("English");
 		languageList.add(language1);
 		languageList.add(language2);
 		languageList.add(language3);
 
 	}
 
-	/**
-	 * accepts language as input checks for language available or not
-	 * 
-	 * @param language
-	 * @return
-	 */
-	public static boolean isLanguageAvailable(String language) {
-		boolean isAvailable = false;
-
-		if (Validation.stringValidator(language)) {
-
-			for (Languages languages :languageList) {
-
-				if (language.equals(languages.getLanguage())) {
-					isAvailable = true;
-				}
-			}
-
-		}
-
-		return isAvailable;
-	}
+	
 
 	/**
 	 * it returns the total number of languages count.
@@ -57,7 +36,7 @@ public class LanguageServices {
 
 	}
 
-	public static List<Languages> getAllLanguages() {
+	public static List<Language> getAllLanguages() {
 		return languageList;
 
 	}
