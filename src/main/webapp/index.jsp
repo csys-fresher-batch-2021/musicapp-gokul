@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html lang="en">
 <head>
-<title>MyApp</title>
+<title>Musify</title>
 <style>
 .center {
 	text-align: center;

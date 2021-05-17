@@ -2,19 +2,20 @@ package in.gokul.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import in.gokul.model.*;
-import in.gokul.validation.UserValidation;
+import in.gokul.validation.UserValidator;
 
 public class UserServices {
-	
-	private UserServices()
-	{
-		
+
+	private UserServices() {
+
 	}
-	private static final HashMap<String, ArrayList<User>> userList = new HashMap<String, ArrayList<User>>();
-	private static final ArrayList<User> userDetails1 = new ArrayList<User>();
-	private static final ArrayList<User> userDetails2 = new ArrayList<User>();
+
+	private static final Map<String, ArrayList<User>> userList = new HashMap<>();
+	private static final ArrayList<User> userDetails1 = new ArrayList<>();
+	private static final ArrayList<User> userDetails2 = new ArrayList<>();
 	static {
 
 		User user1 = new User("kiruba", "kiruba@gmail.com", 1234569870, "34567890", "female", 21);
@@ -25,15 +26,6 @@ public class UserServices {
 		userList.put("kiruba", userDetails1);
 		userList.put("gokul", userDetails2);
 
-	}
-
-	/**
-	 * this method returns the userList
-	 * 
-	 * @return
-	 */
-	public static HashMap<String, ArrayList<User>> getUserList() {
-		return userList;
 	}
 
 	/**
@@ -80,10 +72,11 @@ public class UserServices {
 	public static boolean login(String userName, String password) {
 
 		boolean loggedin = false;
-		if (UserValidation.isValidUserName(userName) && isUserAvailable(userName) && isValidUser(userName, password)) {
+		if (UserValidator.isValidUserName(userName) && isUserAvailable(userName) && isValidUser(userName, password)) {
 			loggedin = true;
 		}
 		return loggedin;
 	}
+
 
 }

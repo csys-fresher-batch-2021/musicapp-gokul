@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import in.gokul.services.LanguageServices;
-import in.gokul.validation.Validation;
+import in.gokul.validation.Validator;
 
 import org.junit.Test;
 
@@ -28,7 +28,7 @@ public class LanguageTest {
 	@Test
 	public void validationWithCorrectDetails() {
 		String language = "Tamil";
-		boolean valid = Validation.stringValidator(language);
+		boolean valid = Validator.stringValidator(language);
 		System.out.println(valid);
 		assertTrue(valid);
 
@@ -40,7 +40,7 @@ public class LanguageTest {
 	@Test
 	public void stringValidationWithIncorrectDetails() {
 		String language = null;
-		boolean valid = Validation.stringValidator(language);
+		boolean valid = Validator.stringValidator(language);
 		assertFalse(valid);
 
 	}
