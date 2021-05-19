@@ -22,7 +22,7 @@ public class AdminTest {
 	
 	}
 	/**
-	 * This test case checks for valid Admin and loggs in or not with given correct details which are not 
+	 * This test case checks for valid Admin and logs in or not with given incorrect details which are not 
       * available in admin database
 	 * @throws UserException 
 	 */
