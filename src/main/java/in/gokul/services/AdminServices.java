@@ -56,15 +56,6 @@ public class AdminServices {
 	public static boolean isAdminAvailable(String adminName) {
 		return adminList.containsKey(adminName);
 	}
-	public static void main(String[] args) {
-		String admin="Ram";
-		String password="Ramss@26";
-		String email="ki@gmail.com";
-		//System.out.println(admin(admin, password,email));
-		//System.out.println(adminList.size());
 
-			System.out.println(adminLogin(admin, password));
-		
-	}
 
 }
