@@ -12,29 +12,20 @@ public class Validator {
 	 * @param language
 	 * @return
 	 */
-	public static boolean stringValidator(String input) {
-		boolean isValidString = true;
+	public static boolean stringValidator(String language) {
+		boolean isvalid = true;
 
 		try {
 
-			if ((input == null) || (input.trim().equals(""))) {
-				isValidString = false;
+			if ((language == null) || (language.trim().equals(""))) {
+				isvalid = false;
 
-			}
-			String specialCharactersString = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
-			String numbers = "0123456789";
-			for (int i = 0; i < input.length(); i++) {
-				char ch = input.charAt(i);
-				if (specialCharactersString.contains(Character.toString(ch)) || numbers.contains(Character.toString(ch))) {
-					isValidString = false;
-					break;
-				}
 			}
 
 		} catch (Exception e) {
-			isValidString = false;
-
-		}
-		return isValidString;
+			isvalid = false;
+			}
+		return isvalid;
 	}
 }
+
