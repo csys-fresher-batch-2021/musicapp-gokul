@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="assets/css/style.css">
 
 <header>
-<%
-String role = (String) session.getAttribute("ROLE");
-out.println(role);
-%>
+	<%
+	String role = (String) session.getAttribute("ROLE");
+	out.println(role);
+	%>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<a class="navbar-brand" href="index.jsp">MusicApp</a>
 		<button class="navbar-toggler d-lg-none" type="button"
@@ -21,18 +21,24 @@ out.println(role);
 					href="index.jsp">Home <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="languages.jsp">Languages</a></li>
-			</ul> <%if(role==null){ %>
+			</ul>
+			<%
+			if (role == null) {
+			%>
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 				<li class="nav-item active"><a class="nav-link"
 					href="Login.jsp">Login</a></li>
 			</ul>
-			 <%} else{%>
-     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-      <a class="nav-link" href="LogoutServlet">Log out</a>
-      </li>
-      </ul>
-      <%} %>
+			<%
+			} else {
+			%>
+			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+				<li class="nav-item active"><a class="nav-link"
+					href="LogoutServlet">Log out</a></li>
+			</ul>
+			<%
+			}
+			%>
 		</div>
 	</nav>
 </header>

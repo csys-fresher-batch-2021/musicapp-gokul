@@ -29,7 +29,7 @@
 					type="password" name="password" id="password"
 					placeholder="Enter Password" required> <br> <br>
 				<button class="btn btn-primary">Sign in</button>
-				<a href="adminLogin.jsp">Admin</a>
+						<a href="adminLogin.jsp">Admin</a>
 			</form>
 
 		</div>

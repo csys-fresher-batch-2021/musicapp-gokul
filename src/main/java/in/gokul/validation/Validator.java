@@ -24,8 +24,7 @@ public class Validator {
 
 		} catch (Exception e) {
 			isvalid = false;
-			}
+		}
 		return isvalid;
 	}
 }
-

@@ -15,18 +15,18 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<div class=center>
-		<%
+			<%
 			String errorMessage = request.getParameter("errorMessage");
-			
+
 			if (errorMessage != null) {
 				out.println("<font color='red'>" + errorMessage + "</font>");
 			}
 			%>
 			<form action="AdminServlet" method="post">
-				<br> <label for="adminName">Enter Your AdminName:</label> 
-				<input type="text" name="adminName" id="adminName"
+				<br> <label for="adminName">Enter Your AdminName:</label> <input
+					type="text" name="adminName" id="adminName"
 					placeholder="Enter AdminName" required><br> <br>
-				<label for="password">Enter Your Password: </label>  <input
+				<label for="password">Enter Your Password: </label> <input
 					type="password" name="password" id="password"
 					placeholder="Enter Password" required> <br> <br>
 				<button class="btn btn-primary">Sign in</button>

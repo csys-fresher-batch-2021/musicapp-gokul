@@ -1,13 +1,10 @@
 package in.gokul.validation;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserValidator {
-	private UserValidator()
-	{
-		
-		
+	private UserValidator() {
+
 	}
 
 	/**
@@ -21,7 +18,7 @@ public class UserValidator {
 		if (Validator.stringValidator(userName) && isValidUserNamePattern(userName)) {
 			isValid = true;
 		}
-        return isValid;
+		return isValid;
 	}
 
 	/**
@@ -36,17 +33,4 @@ public class UserValidator {
 		return Pattern.matches("[a-zA-Z0-9]{4,8}", userName);
 	}
 
-	/**
-	 * This method returns true if input email matches with regex pattern 
-	 * Regex pattern consists of Alphanumeric characters and @- symbol and string  
-	 * @param email
-	 * @return
-	 */
-	public static boolean isValidEmail(String email) throws RuntimeException
-	{
-		  String regex = "^[A-Za-z0-9+_.-]+@(.+)$";  
-	        Pattern pattern = Pattern.compile(regex);  
-	        Matcher matcher = pattern.matcher(email);  
-	        return matcher.matches();
-	}
 }
