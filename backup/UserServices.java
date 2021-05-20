@@ -39,7 +39,8 @@ public class UserServices {
 	public static boolean isValidUser(String userName, String password) {
 		boolean isValid = false;
 		if (userList.containsKey(userName)) {
-			ArrayList<User> userDetail = userList.get(userName);
+			ArrayList<User> userDetail = new ArrayList<>();
+			userDetail = userList.get(userName);
 			for (User info : userDetail) {
 				if (info.getPassword().equals(password)) {
 					isValid = true;
