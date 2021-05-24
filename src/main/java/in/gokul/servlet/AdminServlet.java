@@ -2,6 +2,7 @@ package in.gokul.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,18 +32,24 @@ public class AdminServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String adminName = request.getParameter("adminName");
-		String password = request.getParameter("password");
-		boolean isValidLogin;
-		isValidLogin = AdminServices.adminLogin(adminName, password);
-		if (isValidLogin) {
-			HttpSession session = request.getSession();
-			session.setAttribute("ROLE", "ADMIN");
-			response.sendRedirect("languages.jsp");
-		} else {
-			String errorMessage = "Invalid login credentials";
-			response.sendRedirect("adminLogin.jsp?errorMessage=" + errorMessage);
+		 {
+		try {
+			String adminName = request.getParameter("adminName");
+			String password = request.getParameter("password");
+			boolean isValidLogin;
+			isValidLogin = AdminServices.adminLogin(adminName, password);
+			if (isValidLogin) {
+				HttpSession session = request.getSession();
+				session.setAttribute("ROLE", "ADMIN");
+				RequestDispatcher dispatcher=request.getRequestDispatcher("adminWorks.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				String errorMessage = "Invalid login credentials";
+				response.sendRedirect("adminLogin.jsp?errorMessage=" + errorMessage);
+			}
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
 		}
 
 	}
