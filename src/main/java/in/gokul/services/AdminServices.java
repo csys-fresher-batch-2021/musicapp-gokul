@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import in.gokul.model.Admin;
+
 
 public class AdminServices {
 	private AdminServices() {
@@ -13,6 +15,7 @@ public class AdminServices {
 
 	private static final Map<String, ArrayList<Admin>> adminList = new HashMap<>();
 	private static final ArrayList<Admin> adminDetails = new ArrayList<>();
+	
 
 	static {
 		Admin admin1 = new Admin("Ram", "Ramss@26", "ram@gmail.com");
@@ -56,6 +59,46 @@ public class AdminServices {
 	public static boolean isAdminAvailable(String adminName) {
 		return adminList.containsKey(adminName);
 	}
-
+	/**
+	 * this method can add another admin in the admin list 
+	 * Because of the admin addition it is made to be private
+	 * @param adminName
+	 * @param password
+	 * @param email
+	 * @return
+	 */
+  private static boolean addAdmin(String adminName, String password,String email)
+	{
+	  if(adminList.containsKey(adminName))
+	  {
+		Admin admin=new Admin(adminName, password,email);
+	ArrayList<Admin> adminDetail=getNewArrayList();
+	adminDetail.add(admin);
+	adminList.put(adminName,adminDetail);
+	  }
+	return adminList.containsKey(adminName);
+	
+	}
+  /**
+   * this method return true  if new admin is added successfully in the adminList
+   * otherwise it return false
+   * @param adminName
+   * @param password
+   * @param emailId
+   * @return
+   */
+  public static boolean admin(String adminName, String password,String emailId )
+  {
+	  return addAdmin(adminName, password,emailId);
+	  
+  }
+  /**
+	 * this method return new ArrayList 
+	 * @return
+	 */
+	public static ArrayList<Admin> getNewArrayList()
+	{
+		return new ArrayList<>();
+	}
 
 }
