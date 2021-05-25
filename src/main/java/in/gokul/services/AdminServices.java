@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import in.gokul.dao.AddLanguageDao;
-import in.gokul.exception.ServicesException;
+
 import in.gokul.model.Admin;
-import in.gokul.model.Language;
+
 
 public class AdminServices {
 	private AdminServices() {
@@ -16,7 +15,7 @@ public class AdminServices {
 
 	private static final Map<String, ArrayList<Admin>> adminList = new HashMap<>();
 	private static final ArrayList<Admin> adminDetails = new ArrayList<>();
-	private static final Object Language = null;
+	
 
 	static {
 		Admin admin1 = new Admin("Ram", "Ramss@26", "ram@gmail.com");

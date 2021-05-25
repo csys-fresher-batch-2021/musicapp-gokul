@@ -14,15 +14,14 @@ public boolean  addLanguage(Language language)
    {
 	PreparedStatement pst=null;
 	Connection connection=null;
-    boolean added=false;
+ 
 	try {
 		connection=ConnectionUtil.getConnection();
 		String sql="insert into language(language_name)values(?)";
 		pst=connection.prepareStatement(sql);
 		pst.setString(1,language.getLanguage());
 		int result=pst.executeUpdate();
-		added=(result==1)?true:false;
-		return added;
+		return (result==1)?true:false;
 	}
 	catch (DbException | SQLException  |ClassNotFoundException e) {
 		e.printStackTrace();

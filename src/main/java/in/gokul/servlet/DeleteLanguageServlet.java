@@ -49,7 +49,7 @@ public class DeleteLanguageServlet extends HttpServlet {
 			}
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
-			throw new DbException(e.getMessage());
+		
 		}
 	}
 

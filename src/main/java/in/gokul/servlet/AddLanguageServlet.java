@@ -51,7 +51,7 @@ public class AddLanguageServlet extends HttpServlet {
 			}
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
-			throw new DbException(e.getMessage());
+			
 		}
 	}
 
