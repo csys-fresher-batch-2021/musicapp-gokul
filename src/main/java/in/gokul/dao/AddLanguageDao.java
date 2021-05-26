@@ -23,7 +23,7 @@ public boolean  addLanguage(Language language)
 		int result=pst.executeUpdate();
 		return (result==1)?true:false;
 	}
-	catch (DbException | SQLException  |ClassNotFoundException e) {
+	catch (DbException | SQLException e) {
 		e.printStackTrace();
 		throw new DbException("Cannot add language into the database"+e.getMessage());
 
