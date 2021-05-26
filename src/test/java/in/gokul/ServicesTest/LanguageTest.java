@@ -17,7 +17,7 @@ public class LanguageTest {
 	@Test
 	public void totalLanguagesCount() {
 		int languagesCount = LanguageServices.totalLanguagesCount();
-		assertEquals(3, languagesCount);
+		assertEquals(2, languagesCount);
 
 	}
 
