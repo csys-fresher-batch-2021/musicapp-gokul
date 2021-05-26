@@ -23,7 +23,7 @@ public class DeleteLanguageDao {
 			deleted=(result==1)?true:false;
 			return deleted;
 		}
-		catch (DbException | SQLException  |ClassNotFoundException e) {
+		catch (DbException | SQLException e) {
 			throw new DbException("Cannot delete language from the database"+e.getMessage());
 
 		}
