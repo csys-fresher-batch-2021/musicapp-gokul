@@ -34,7 +34,7 @@ public class DisplaylanguageDao {
 				Language input = new Language(topicName);
 				languageList.add(input);
 			}
-		} catch (DbException | SQLException | ClassNotFoundException e) {
+		} catch (DbException | SQLException e) {
 			e.printStackTrace();
 			throw new DbException("Can't get topics from database");
 		} finally {
