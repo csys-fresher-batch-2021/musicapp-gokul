@@ -9,7 +9,7 @@ import in.gokul.model.Language;
 
 public class DisplayLanguageService {
 	/**
-	 * This method creates the object for DisplayLanguagedao.
+	 * This method creates the object for DisplayLanguagedao
 	 * @return
 	 */
 	public static List<Language> displayLanguages()

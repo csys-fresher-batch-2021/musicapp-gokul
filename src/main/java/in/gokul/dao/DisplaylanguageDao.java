@@ -13,7 +13,7 @@ import in.gokul.exception.DbException;
 
 public class DisplaylanguageDao {
 	/**
-	 * This method fetches all the languages from the database musify and returns in
+	 * This method fetches all the languages from the database musify and returns in 
 	 * the form of list
 	 * 
 	 * @return

@@ -16,7 +16,7 @@ import in.gokul.model.Language;
 import in.gokul.services.DisplayLanguageService;
 
 /**
- * Servlet implementation class DisplaylanguageServlet
+ * Servlet implementation class DisplaylanguageServlet.
  */
 @WebServlet("/DisplaylanguageServlet")
 public class DisplaylanguageServlet extends HttpServlet {

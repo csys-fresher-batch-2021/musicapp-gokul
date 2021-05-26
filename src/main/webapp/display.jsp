@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>All language</title>
+<title>All Language</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

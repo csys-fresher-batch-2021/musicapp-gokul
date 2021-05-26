@@ -13,7 +13,7 @@ public class ConnectionUtil {
 
 	}
    /**
-    * this method gets the connection to the database using system variables
+    * this method gets the connection to the database using system variables.
     * @return
     */
 	public static Connection getConnection() {
