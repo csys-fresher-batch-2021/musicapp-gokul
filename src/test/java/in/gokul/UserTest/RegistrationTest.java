@@ -68,20 +68,19 @@ class RegistrationTest {
 			String password, String gender, int age) throws IOException {
 
 		User user = new User(userName, emailId, mobileNumber, password, gender, age);
-		boolean isAdded = false;
+
 		try {
 			if (NewUserRegistrationService.isValidDetails(userName, emailId, mobileNumber.toString(), password, gender,
 					age)) {
 				System.out.println("hivalidatio");
 
-				isAdded = NewUserRegistrationService.addUser(user);
+				assertFalse(NewUserRegistrationService.addUser(user));
 			}
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
+		} catch (Exception e) {
+			fail();
 
 		}
-		assertFalse(isAdded);
+
 	}
 
 }
