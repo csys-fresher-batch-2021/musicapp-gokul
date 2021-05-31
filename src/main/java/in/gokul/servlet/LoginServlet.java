@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import in.gokul.services.UserServices;
+import in.gokul.exception.ServicesException;
+import in.gokul.services.UserLoginServices;
 
 /**
  * Servlet implementation class LoginServlet
@@ -31,23 +33,27 @@ public class LoginServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException,IOException{
 
 		try {
 			String userName = request.getParameter("userName");
 			String password = request.getParameter("password");
 
-			if (UserServices.login(userName, password)) {
+			if (UserLoginServices.login(userName, password)) {
+				HttpSession session = request.getSession();
+				session.setAttribute("ROLE", "USER");
 				response.sendRedirect("languages.jsp?info=" + "succesfullyloggedin");
 			} else {
 				String errorMessage = "Invalid Login Credentials";
 				response.sendRedirect("Login.jsp?errorMessage=" + errorMessage);
 
 			}
-		} catch (RuntimeException e) {
+		} catch (IOException|RuntimeException e) {
+			e.printStackTrace();
 			String errorMessage = e.getMessage();
 			response.sendRedirect("Login.jsp?errorMessage=" + errorMessage);
-			e.printStackTrace();
+		
+		
 		}
 	}
 

@@ -71,6 +71,5 @@ public class ConnectionUtil {
 			throw new DbException("INVALID CONNECTION");
 		}
 	}
-	
-	
+
 }

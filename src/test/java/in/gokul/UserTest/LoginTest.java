@@ -1,36 +1,42 @@
 package in.gokul.UserTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Order;
 
-import in.gokul.services.UserServices;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-public class LoginTest {
+import in.gokul.services.UserLoginServices;
+
+class LoginTest {
+	/**
+	 * this testcase checks for login with correct details
+	 * 
+	 * @param userName
+	 * @param password
+	 */
+
+	@Order(1)
+	@ParameterizedTest
+	@CsvSource({ "Kiruba,Kirubs@345", "gokul,Gokul@123" })
+	void testForValidUsernameWithCorrectFormat(String userName, String password) {
+
+		assertTrue(UserLoginServices.login(userName, password));
+
+	}
 
 	/**
-	 * This test case method checks with correct Details which is stored in the database 
+	 * This method tests with incorrect string which is not valid
 	 */
-	@Test
-	public void testLoginWithCorrectDetails() {
-		String userName="gokul";
-		String password="12345678";
-		boolean isValid=UserServices.login(userName, password);
-		assertTrue(isValid);
-		
-	}
-	
-	/**
-	 * This test case method checks with Incorrect Details which is not stored in the database 
-	 */
-	@Test
-	public void testLoginWithInCorrectDetails() {
-		String userName="kiruba";
-		String password="12345678";
-		boolean isValid=UserServices.login(userName, password);
-		assertFalse(isValid);
-		
-	}
-	
 
+	@Order(2)
+	@ParameterizedTest
+	@CsvSource({ "Kiruba,Kiru123", "gokul,gk123" })
+	void testForValidUsernameWithInCorrectFormat(String userName, String password) {
+
+		System.out.println("Testcase:" + UserLoginServices.login(userName, password));
+		assertFalse(UserLoginServices.login(userName, password));
+	}
 }
