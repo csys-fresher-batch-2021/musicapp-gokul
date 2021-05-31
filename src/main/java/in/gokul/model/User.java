@@ -3,7 +3,7 @@ package in.gokul.model;
 public class User {
 	private String userName;
 	private String emailId;
-	private long mobileNumber;
+	private Long mobileNumber;
 	private String password;
 	private String gender;
 	private int age;
@@ -14,7 +14,16 @@ public class User {
 				+ password + ", gender=" + gender + ", age=" + age + "]";
 	}
 
-	public User(String userName, String emailId, long mobileNumber, String password, String gender, int age) {
+	public User(String userName, String password) {
+		this.userName = userName;
+		this.password = password;
+	}
+
+	public User(String userName) {
+		this.userName = userName;
+	}
+
+	public User(String userName, String emailId, Long mobileNumber, String password, String gender, int age) {
 		this.userName = userName;
 		this.emailId = emailId;
 		this.mobileNumber = mobileNumber;
@@ -64,11 +73,11 @@ public class User {
 		this.password = password;
 	}
 
-	public long getMobileNumber() {
+	public Long getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(long mobileNumber) {
+	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
