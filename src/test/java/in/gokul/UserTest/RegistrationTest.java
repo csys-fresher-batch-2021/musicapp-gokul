@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -12,16 +11,17 @@ import in.gokul.model.User;
 import in.gokul.services.NewUserRegistrationService;
 
 class RegistrationTest {
-/**
- * this method test for valid user registration with valid details
- * @param userName
- * @param emailId
- * @param mobileNumber
- * @param password
- * @param gender
- * @param age
- * @throws IOException
- */
+	/**
+	 * this method test for valid user registration with valid details
+	 * 
+	 * @param userName
+	 * @param emailId
+	 * @param mobileNumber
+	 * @param password
+	 * @param gender
+	 * @param age
+	 * @throws IOException
+	 */
 
 	@ParameterizedTest
 	@CsvSource("Bharath,bharath@gmail.com,7894567684,Bharath@35,male,21")
@@ -35,18 +35,20 @@ class RegistrationTest {
 					age)) {
 
 				isAdded = NewUserRegistrationService.addUser(user);
+				assertTrue(isAdded);
 
 			}
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
+		} catch (Exception e) {
+			fail();
 
 		}
-		assertTrue(isAdded);
+
 	}
 
 	/**
-	 * this method checks for user registration with values which is not in correct format
+	 * this method checks for user registration with values which is not in correct
+	 * format
+	 * 
 	 * @param userName
 	 * @param emailId
 	 * @param mobileNumber

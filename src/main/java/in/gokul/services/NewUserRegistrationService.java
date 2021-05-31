@@ -15,7 +15,6 @@ public class NewUserRegistrationService {
 	 * 
 	 * @param user
 	 * @return
-	 * @throws ClassNotFoundException
 	 */
 	public static boolean addUser(User user) {
 		NewUserRegistrationDao dao = new NewUserRegistrationDao();
