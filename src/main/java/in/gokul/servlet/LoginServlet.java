@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 			String errorMessage = e.getMessage();
 			response.sendRedirect("Login.jsp?errorMessage=" + errorMessage);
-			throw new ServicesException(errorMessage);
+		
 		
 		}
 	}

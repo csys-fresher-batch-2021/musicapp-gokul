@@ -17,7 +17,7 @@ public class NewUserRegistrationService {
 	 * @return
 	 * @throws ClassNotFoundException
 	 */
-	public static boolean addUser(User user) throws ClassNotFoundException {
+	public static boolean addUser(User user) {
 		NewUserRegistrationDao dao = new NewUserRegistrationDao();
         return dao.addNewUser(user);
 

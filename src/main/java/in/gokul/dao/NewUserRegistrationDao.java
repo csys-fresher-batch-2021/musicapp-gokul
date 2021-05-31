@@ -26,7 +26,7 @@ public class NewUserRegistrationDao {
 			pst.setString(6, user.getPassword());
 
 			int result = pst.executeUpdate();
-			return (result == 1) ? true : false;
+			return (result == 1);
 		} catch (DbException | SQLException e) {
 			e.printStackTrace();
 			throw new DbException("Cannot add user into the database" + e.getMessage());

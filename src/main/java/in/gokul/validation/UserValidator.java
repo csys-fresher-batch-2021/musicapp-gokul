@@ -81,7 +81,7 @@ public class UserValidator {
 	 */
 	public static boolean isValidAge(int age) {
 
-		return age > 6 ? true : false;
+		return (age > 6) ;
 
 	}
 
