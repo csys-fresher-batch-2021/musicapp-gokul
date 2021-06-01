@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import in.gokul.exception.ServicesException;
+
 import in.gokul.services.UserLoginServices;
 
 /**
@@ -42,7 +42,9 @@ public class LoginServlet extends HttpServlet {
 			if (UserLoginServices.login(userName, password)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("ROLE", "USER");
-				response.sendRedirect("languages.jsp?info=" + "succesfullyloggedin");
+				session.setAttribute("Name", userName);
+				session.setMaxInactiveInterval(300); 
+				response.sendRedirect("display.jsp?info=" + "succesfullyloggedin");
 			} else {
 				String errorMessage = "Invalid Login Credentials";
 				response.sendRedirect("Login.jsp?errorMessage=" + errorMessage);

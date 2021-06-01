@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import in.gokul.services.AdminServices;
+import in.gokul.services.AdminLoginServices;
+
+import in.gokul.validation.UserValidator;
 
 /**
  * Servlet implementation class AdminServlet
@@ -31,17 +33,20 @@ public class AdminServlet extends HttpServlet {
 	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-		 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String adminName = request.getParameter("adminName");
 			String password = request.getParameter("password");
-			boolean isValidLogin;
-			isValidLogin = AdminServices.adminLogin(adminName, password);
+			boolean isValidLogin = false;
+			if (UserValidator.isValidUserName(adminName)) {
+				isValidLogin = AdminLoginServices.adminLoginService(adminName, password);
+			}
 			if (isValidLogin) {
 				HttpSession session = request.getSession();
 				session.setAttribute("ROLE", "ADMIN");
-				RequestDispatcher dispatcher=request.getRequestDispatcher("adminWorks.jsp");
+				session.setAttribute("Name", adminName);
+				session.setMaxInactiveInterval(300); 
+				RequestDispatcher dispatcher = request.getRequestDispatcher("adminWorks.jsp");
 				dispatcher.forward(request, response);
 			} else {
 				String errorMessage = "Invalid login credentials";
