@@ -45,7 +45,7 @@ public class DeleteLanguageServlet extends HttpServlet {
 			} else {
 				response.sendRedirect("adminWorks.jsp?errorMessage=" + "Cannot delete language ");
 			}
-		} catch ( IOException | ClassNotFoundException e) {
+		} catch ( IOException e) {
 			e.printStackTrace();
 		
 		}
