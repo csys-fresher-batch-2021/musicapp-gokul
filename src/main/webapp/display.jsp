@@ -19,6 +19,7 @@
 				<tbody id="languageList">
 				</tbody>
 			</table>
+			
 		</div>
 
 	</main>
@@ -33,7 +34,7 @@
 				count++;
 				content += "<tr><td>" + count + 
 				"</td><td>" + input.language ;
-				//"</td>" + "<td><a class=\"btn btn-primary\" href=\"update_topic.jsp?topicId=" + topic.topicId + "\"" + ">Update</a></td></tr>";
+			
 			}
 			console.log(content);
 			document.querySelector("#languageList").innerHTML= content;

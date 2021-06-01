@@ -14,15 +14,10 @@
 </head>
 <body>
 <div class="center">
-<%
-			String errorMessage = request.getParameter("errorMessage");
 
-			if (errorMessage != null) {
-				out.println("<font color='red'>" + errorMessage + "</font>");
-			}
-			%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
+		<jsp:include page="message.jsp"></jsp:include>
 	<h3>--Language Addition--</h3> 
 		<form action="AddLanguageServlet" method="get">
 			<label for="addLanguage">Language </label> <br> <input

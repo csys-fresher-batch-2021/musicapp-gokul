@@ -10,6 +10,12 @@ public class Admin {
 		return "Admin [adminName=" + adminName + ", password=" + password + "]";
 	}
 
+	public Admin(String adminName, String password) {
+
+		this.adminName = adminName;
+		this.password = password;
+	}
+
 	public String getEmailId() {
 		return emailId;
 	}
