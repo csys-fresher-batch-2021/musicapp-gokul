@@ -25,7 +25,12 @@
 				<li class="nav-item"><a class="nav-link" href="display.jsp">Languages</a></li>
 			
 				<%
-			if (role==admin) {
+			if (role!=null) {
+			%>
+				<li class="nav-item active"><a class="nav-link"
+					href="displaySongs.jsp">AllSongs</a></li>
+		     <%} %>	
+		<% 	if (role==admin) {
 			%>
 			
 				<li class="nav-item active"><a class="nav-link"
