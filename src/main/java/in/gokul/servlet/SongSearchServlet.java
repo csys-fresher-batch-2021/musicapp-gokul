@@ -3,6 +3,8 @@ package in.gokul.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,18 +38,20 @@ public class SongSearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+
 		String songName=request.getParameter("songName").toUpperCase();
 	
 		Song song=new Song(songName);
-		Song searchedSong=SongServices.searchSong(song);
+		List<Song>searchedSongList=SongServices.searchSong(song);
 		
 		Gson gson = new Gson();
-		String json = gson.toJson(searchedSong);
+		String json = gson.toJson(searchedSongList);
 		
 		
 		PrintWriter out = response.getWriter();
 		out.print(json);
 		out.flush();
+
 
 		
 	

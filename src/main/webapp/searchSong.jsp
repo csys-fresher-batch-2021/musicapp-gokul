@@ -18,15 +18,14 @@
 	<main class="container-fluid">
 		<div class=center1>
 			<p>All Songs In One Place!</p>
-			<form action="SongSearchServlet">
-				<div class="input-group">
+					<div class="input-group">
 					<input type="search" class="form-control rounded"
-						placeholder="Search" aria-label="Search" name="songName"
+						placeholder="Search" aria-label="Search" name="songName" id="songName"
 						aria-describedby="search-addon" />
-					<button type="submit" class="btn btn-outline-primary">search</button>
+					<button type="button" class="btn btn-outline-primary" onclick="getSearchedSong()" >search</button>
 
 				</div>
-			</form>
+	
 			<div class="container">
 				<h2>Song that you searching!</h2>
 				<div class="panel panel-default">
@@ -54,19 +53,23 @@
 		</div>
 		<script>
 		function getSearchedSong(){
-			let url = "SongSearchServlet";
-			fetch(url).then(res=> res.json()).then(res=>{
-			let Songs = res;
+			let song=document.getElementById('songName').value;
+			let url = "SongSearchServlet?songName="+song;
+		    fetch(url).then(res=> res.json()).then(res=>{
+			let songs = res;
 			let content = "";
 			let count=1;
-		      content += "<tr><td>" + count + 
-				"</td><td>" + Songs.songName +
-				"</td><td>" + Songs.movieName+
-				"</td><td>" + Songs.language;
+			for(let song of songs )
+				{
+				  content += "<tr><td>" + count++ + 
+				"</td><td>" + song.songName +
+				"</td><td>" + song.movieName+
+				"</td><td>" + song.language;
+				}
 			  document.querySelector("#SearchedSong").innerHTML= content;
 		})
 	}
-		 getSearchedSong();
+	
 		 </script>
 	</main>
 </body>

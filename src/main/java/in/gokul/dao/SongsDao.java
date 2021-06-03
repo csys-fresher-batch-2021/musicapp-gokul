@@ -20,7 +20,7 @@ public class SongsDao {
 	 * @return
 	 */
 	public List<Song> getAllLanguageSongs() {
-		List<Song> SongsList = new ArrayList<>();
+		List<Song> songsList = new ArrayList<>();
 		String selectSQLQuery = "SELECT * FROM Songs";
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
@@ -31,11 +31,11 @@ public class SongsDao {
 			resultSet = prepareStatement.executeQuery();
 			while (resultSet.next()) {
 				String songName=resultSet.getString("song_Name");
-				String MovieName = resultSet.getString("movie_Name");
+				String movieName = resultSet.getString("movie_Name");
 				String languageName = resultSet.getString("language_name");
 
-				Song input = new Song(songName, MovieName, languageName);
-				SongsList.add(input);
+				Song input = new Song(songName, movieName, languageName);
+				songsList.add(input);
 			}
 		} catch (DbException | SQLException e) {
 			e.printStackTrace();
@@ -43,14 +43,19 @@ public class SongsDao {
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
-		return SongsList;
+		return songsList;
 	}
-	
-	public Song getSongBySongName(Song songName)
+	/**
+	 * This dao method will get the connection and execute the query.
+	 * @param songName
+	 * @return
+	 */
+	public List<Song> getSongBySongName(Song songName)
 	{
 	
-		
-		String query="Select * from Songs where song_Name=?";
+		List<Song>songList=new ArrayList<>();
+		String query=" Select * from Songs where song_Name ilike '%"+songName.getSongName()+"%';";
+
 		Connection con=null;
 		PreparedStatement pst=null;
 		ResultSet resultSet=null;
@@ -58,8 +63,9 @@ public class SongsDao {
 		try {
 			con=ConnectionUtil.getConnection();
 			pst=con.prepareStatement(query);
-			pst.setString(1, songName.getSongName());
+			
 			resultSet=pst.executeQuery();
+	
 			while(resultSet.next())
 			{
 				String song=resultSet.getString("song_Name");
@@ -67,10 +73,10 @@ public class SongsDao {
 				String language=resultSet.getString("language_name");
 			
 				input = new Song(song, movie, language);
-				
+				songList.add(input);
 				
 			}
-				
+		
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -81,7 +87,7 @@ public class SongsDao {
 		
 		
 	
-	return input;
+	return songList;
 	}
 
 }

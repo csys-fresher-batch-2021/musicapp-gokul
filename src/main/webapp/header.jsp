@@ -29,8 +29,10 @@
 			%>
 				<li class="nav-item active"><a class="nav-link"
 					href="displaySongs.jsp">AllSongs</a></li>
+					<li class="nav-item active"><a class="nav-link"
+					href="searchSong.jsp">SearchSongs</a></li>
 		     <%} %>	
-		<% 	if (role==admin) {
+		 <% if (role==admin) {
 			%>
 			
 				<li class="nav-item active"><a class="nav-link"
