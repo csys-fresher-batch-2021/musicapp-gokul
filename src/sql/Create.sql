@@ -12,7 +12,7 @@ create table  userDetail (
 	gender varchar(6) not null,
 	age int not null,
 	pass_word varchar(25) not null,
-	date_joined TIMESTAMPTZ  not null,
+	date_joined TIMESTAMPTZ ,
 	primary key(user_Name)
 );
 
@@ -37,6 +37,12 @@ create table adminDetails(
 insert into adminDetails
 (admin_Name,email_Id,pass_word)values
 ('Ramkumar','ramkumar@gmail.com','Ram@123');
-
-
+--songs table --
+create table songs(
+song_Id serial ,
+song_Name varchar(20) not null,
+movie_Name varchar(20) not null,
+language_name varchar(20) not null,
+released_On DATE
+);
 
