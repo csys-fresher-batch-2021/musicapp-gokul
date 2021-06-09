@@ -45,6 +45,9 @@
 										<th scope="col">Song_Id</th>
 										<th scope="col">Song_Name</th>
 										<th scope="col">Movie_Name</th>
+										<th scope="col">Play</th>
+										<th scope="col">Add </th>
+										<th scope="col">Delete </th>
 
 									</thead>
 									<tbody id="TamilSongsList">
@@ -69,6 +72,9 @@
 										<th scope="col">Song_Id</th>
 										<th scope="col">Song_Name</th>
 										<th scope="col">Movie_Name</th>
+									    <th scope="col">Play</th>
+										<th scope="col"> Add</th>
+										<th scope="col">Delete </th>
 
 									</thead>
 									<tbody id="HindiSongsList">
@@ -93,6 +99,9 @@
 										<th scope="col">Song_Id</th>
 										<th scope="col">Song_Name</th>
 										<th scope="col">Movie_Name</th>
+										<th scope="col">Play</th>
+										<th scope="col"> Add</th>
+										<th scope="col">Delete </th>
 
 									</thead>
 									<tbody id="MalayalamSongsList">
@@ -121,7 +130,10 @@
 				if((input.language=="TAMIL")){
 				content += "<tr><td>" + count + 
 				"</td><td>" + input.songName +
-				"</td><td>" + input.movieName;
+				"</td><td>" + input.movieName+
+				"</td><td>" + "<a href=playSongs.jsp?name="+input.songName+">Play</a>" +
+				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">add to playlist </a>" +
+				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">delete</a>" ;
 				}
 			
 			}
@@ -143,7 +155,10 @@
 					count++;
 				content += "<tr><td>" + count + 
 				"</td><td>" + input.songName +
-				"</td><td>" + input.movieName;
+				"</td><td>" + input.movieName+
+				"</td><td>" + "<a href=playSongs.jsp?name="+input.songName+">Play</a>" +
+				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">add to playlist </a>" +
+				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">delete</a>" ;
 				}
 			
 			}
@@ -163,7 +178,10 @@
 					count++;
 				content += "<tr><td>" + count + 
 				"</td><td>" + input.songName +
-				"</td><td>" + input.movieName;
+				"</td><td>" + input.movieName+
+				"</td><td>" + "<a href=playSongs.jsp?name="+input.songName+">Play</a>" +
+			     "</td><td>" + "<a href=playlist.jsp?name="+input.songName+">add to playlist </a>"+ 
+				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">delete</a>" ;
 				}
 			
 			}
