@@ -12,15 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import in.gokul.model.Language;
-import in.gokul.services.DisplayLanguageService;
+import in.gokul.dto.PlaylistDto;
+import in.gokul.exception.DbException;
+import in.gokul.services.PlaylistServices;
 
 /**
- * Servlet implementation class DisplaylanguageServlet.
+ * Servlet implementation class GetAllPlaylistServlet
  */
-@WebServlet("/DisplaylanguageServlet")
-public class DisplaylanguageServlet extends HttpServlet {
+@WebServlet("/GetAllPlaylistServlet")
+public class GetAllPlaylistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public GetAllPlaylistServlet() {
+		super();
+
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -30,20 +39,21 @@ public class DisplaylanguageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			List<Language> list = DisplayLanguageService.displayLanguages();
 
-		    Gson gson = new Gson();
+			String userName = request.getParameter("userName");
+
+			List<PlaylistDto> list = PlaylistServices.getAllPlaylist(userName);
+			Gson gson = new Gson();
 			String json = gson.toJson(list);
-			
-			// Step 3: Write the json in response and flush it
+
 			PrintWriter out = response.getWriter();
 			out.print(json);
 			out.flush();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
+		} catch (IOException|DbException e) {
+			String errorMessage = "Cannot fetch all Playlist ";
+			response.sendRedirect("playlist.jsp?errorMessage=" + errorMessage);
 		}
+
 	}
 
 }

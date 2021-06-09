@@ -48,9 +48,16 @@ public class SongSearchServlet extends HttpServlet {
 		String json = gson.toJson(searchedSongList);
 		
 		
+		try
+		{
 		PrintWriter out = response.getWriter();
 		out.print(json);
 		out.flush();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 
 
 		
