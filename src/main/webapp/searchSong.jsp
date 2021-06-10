@@ -38,6 +38,9 @@
 									<th scope="col">Song_Name</th>
 									<th scope="col">Movie_Name</th>
 									<th scope="col">Language_Name</th>
+									<th scope="col">Play</th>
+									<th scope="col">Add </th>
+									<th scope="col">Delete </th>
 
 								</thead>
 								<tbody id="SearchedSong">
@@ -64,7 +67,10 @@
 				  content += "<tr><td>" + count++ + 
 				"</td><td>" + song.songName +
 				"</td><td>" + song.movieName+
-				"</td><td>" + song.language;
+				"</td><td>" + song.language+
+				"</td><td>" + "<a href=playSongs.jsp?name="+song.songName+">Play</a>" +
+				"</td><td>" + "<a href=playlist.jsp?name="+song.songName+">add to playlist </a>" +
+				"</td><td>" + "<a href=playlist.jsp?name="+song.songName+">delete</a>" ;
 				}
 			  document.querySelector("#SearchedSong").innerHTML= content;
 		})

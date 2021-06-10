@@ -22,7 +22,7 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="index.jsp">Home <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="display.jsp">Languages</a></li>
+				<li class="nav-item active"><a class="nav-link" href="display.jsp">Languages</a></li>
 			
 				<%
 			if (role!=null) {
@@ -50,6 +50,8 @@
 					href="Login.jsp">Login</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="NewUserRegistration.jsp">Register</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="adminLogin.jsp">Admin</a></li>
 			</ul>
 		
 			<%

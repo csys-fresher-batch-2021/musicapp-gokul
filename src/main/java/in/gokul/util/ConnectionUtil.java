@@ -2,9 +2,9 @@ package in.gokul.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import in.gokul.exception.DbException;
 
@@ -31,7 +31,7 @@ public class ConnectionUtil {
     * @param pst
     * @param con
     */
-	public static void close(PreparedStatement pst, Connection con) {
+	public static void close(Statement pst, Connection con) {
 		try {
 			if (con != null) {
 				con.close();
@@ -52,7 +52,7 @@ public class ConnectionUtil {
 	 * @param pst
 	 * @param con
 	 */
-	public static void close(ResultSet res,PreparedStatement pst, Connection con) {
+	public static void close(ResultSet res,Statement pst, Connection con) {
 		try {
 			if (con != null) {
 				con.close();

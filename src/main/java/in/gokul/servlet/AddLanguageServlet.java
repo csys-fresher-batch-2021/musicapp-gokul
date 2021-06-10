@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.gokul.model.Language;
 
 import in.gokul.services.AddLanguagesService;
+import in.gokul.services.AdminServices;
 import in.gokul.validation.LanguageValidator;
 
 /**
@@ -36,13 +37,15 @@ public class AddLanguageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			String language = request.getParameter("addLanguage");
+			String language = request.getParameter("addLanguage").toUpperCase();
 			Language inputlanguage = new Language(language);
-			if ((LanguageValidator.isValidLanguage(language)) && (LanguageValidator.validlengthforLanguage(language))
-					&& (AddLanguagesService.addLanguage(inputlanguage))) {
-
+			if ((LanguageValidator.isValidLanguage(language)) && (LanguageValidator.validlengthforLanguage(language))&&(!(AdminServices.isLanguageAlreadyAvailable(inputlanguage)))) 
+			{
+				if(AddLanguagesService.addLanguage(inputlanguage))
+				{
 				String info = "Language " + language + " added Succesfully";
 				response.sendRedirect("adminWorks.jsp?info=" + info);
+				}
 			} else {
 				response.sendRedirect("adminWorks.jsp?errorMessage=" + "Cannot add language ");
 			}

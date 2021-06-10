@@ -37,6 +37,7 @@ create table adminDetails(
 insert into adminDetails
 (admin_Name,email_Id,pass_word)values
 ('Ramkumar','ramkumar@gmail.com','Ram@123');
+
 --songs table --
 create table songs(
 song_Id serial ,
@@ -46,3 +47,22 @@ language_name varchar(20) not null,
 released_On DATE
 );
 
+ ---playlist creation---
+ create table playlist(
+ playlist_id serial,
+ playlist_name varchar(20) not null,
+ song_id int  not null ,
+user_id int not null,
+	 created_on Date,
+	 foreign key(song_id) references songs(song_Id) on delete cascade,
+	 foreign key(user_id) references userDetail(user_Id) on delete cascade,
+	 primary key(playlist_id)
+  );
+
+insert into playlist (playlist_name,song_id,user_id,created_on) values
+('mysongs',1,1,'2021-06-07');
+
+-- image table for styling  --
+create table music_images(image_name varchar(70) not null,image bytea);
+
+insert into music_images(image_name,image) values('music1', pg_read_binary_file('D:\music1.jpg'));
