@@ -9,7 +9,12 @@ import in.gokul.model.Language;
 import in.gokul.util.ConnectionUtil;
 
 public class AddLanguageDao {
-	
+
+	/**
+	 * this method adds the language in database
+ 	 * @param language
+	 * @return
+	 */
 public boolean  addLanguage(Language language) 
    {
 	PreparedStatement pst=null;
@@ -26,8 +31,7 @@ public boolean  addLanguage(Language language)
 	catch (DbException | SQLException e) {
 		e.printStackTrace();
 		throw new DbException("Cannot add language into the database"+e.getMessage());
-
-	}
+}
 	finally
 	{
 	   ConnectionUtil.close(pst,connection);

@@ -37,7 +37,7 @@ public class DeleteLanguageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		try {
-			String language = request.getParameter("deleteLanguage");
+			String language = request.getParameter("deleteLanguage").toUpperCase();
 			Language inputlanguage = new Language(language);
 			if ( (LanguageValidator.isValidLanguage(language))&&(LanguageValidator.validlengthforLanguage(language))&&(DeleteLanguageServices.deleteLanguage(inputlanguage))) {
 				String info="Language "+ language+" deleted Succesfully";
