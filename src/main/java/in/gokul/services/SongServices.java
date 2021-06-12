@@ -4,7 +4,9 @@ package in.gokul.services;
 import java.util.List;
 
 import in.gokul.dao.SongsDao;
-
+import in.gokul.dto.PlaySongsDto;
+import in.gokul.exception.DbException;
+import in.gokul.exception.ServicesException;
 import in.gokul.model.Song;
 import in.gokul.validation.LanguageValidator;
 import in.gokul.validation.SongsValidator;
@@ -76,6 +78,34 @@ public class SongServices {
 		
 		return isValidLanguageName&&isValidMovieName&&isValidSongName;
 	}
+	
+	/**
+	 * This method is used to retrieve song from database 
+	 * @param countryName
+	 * @return
+	 */
+	public static byte[] getSongSource(String songName) {
+		SongsDao dao = new SongsDao();
+		byte[] songSource;
+		try {
+			songSource = dao.getSong(songName);
+		} catch (DbException e) {
+			throw new ServicesException("unable to retireve songSource"+e.getMessage());
+
+		}
+		return songSource;
+	}
+	/**
+	 * this method add the songsource and image source in the database
+	 * @param song
+	 * @return
+	 */
+	public static boolean addSongSource(PlaySongsDto song)
+	{
+		 SongsDao dao=new SongsDao();
+		
+		  return  dao.addSongSourceAndImage(song);
+	} 
 	
 }
 

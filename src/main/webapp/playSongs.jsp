@@ -17,12 +17,42 @@
 		<%
 		String song = request.getParameter("name");
 		%>
+
 		<div class=center>
-			<h1>
-				Your song
-				<%=song%>
-				is Playing !!!
-			</h1>
+			<div class="card bg-light text-dark">
+				<div class="card-body-backgrund-dark">
+					<img src="GetSongImageServlet?imageName=<%=song%>" alt="<%=song%>"
+						>
+				</div>
+			</div>
+
+
+
+			<div class="card bg-info text-white">
+				<div class="card-body">
+					<h4>Audio controls !</h4>
+					<audio controls>
+						<source src="PlaySongsServlet?songName=<%=song%>" type="audio/ogg">
+						<source src="PlaySongsServlet?songName=<%=song%>"
+							type="audio/mpeg">
+					</audio>
+					<h3>
+						Your song
+						<%=song%>
+						is Playing !!!
+					</h3>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-body">
+
+					<img src="RetriveImageServlet?imageName=musicgif1" alt="music1"
+						width="100%" height="150">
+				</div>
+			</div>
+
+
 		</div>
 	</main>
 </body>

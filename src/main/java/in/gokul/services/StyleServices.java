@@ -26,4 +26,24 @@ public class StyleServices {
 		}
 		return image;
 	}
+	
+
+	/**
+	 * This method is used to retrieve song image from database 
+	 * @param countryName
+	 * @return
+	 */
+	public static byte[] retireveSongImage(String imageName) {
+		StyleDao dao = new StyleDao();
+		byte[] image;
+		try {
+			image = dao.retireveSongImage(imageName);
+		} catch (DbException e) {
+			throw new ServicesException("unable to retireve image"+e.getMessage());
+
+		}
+		return image;
+	}
+	
+	
 }
