@@ -1,13 +1,18 @@
 package in.gokul.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import in.gokul.dto.PlaySongsDto;
 import in.gokul.exception.DbException;
 
 import in.gokul.model.Song;
@@ -157,6 +162,11 @@ public class SongsDao {
 		}
 		return isExists;
 	}
+	/**
+	 * this dao  deletes the song from songs database
+	 * @param details
+	 * @return
+	 */
 	public boolean deleteSong(Song details)
 	{
 		PreparedStatement pst = null;
@@ -187,5 +197,69 @@ public class SongsDao {
 
 		
 	}
+	/**
+	 * This method is used to retrieve image from database
+	 * 
+	 * @param imageName
+	 * @return
+	 */
+	public byte[] getSong(String songName)  {
+		Connection connection = null;
+		Statement st = null;
+		byte[] songBytes = null;
+		try {
+			connection =ConnectionUtil.getConnection();
+			st = connection.createStatement();
+		   ResultSet rs = st.executeQuery("SELECT song FROM  song_source WHERE song_name ='" + songName + "'");
+			if (rs != null) {
+				while (rs.next()) {
+				   songBytes = rs.getBytes(1);
+				}
+			}
+		} catch ( SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(st, connection);
+		}
+		return songBytes;
 
+	}
+	/**
+	 * This method is used to retrieve songSource and respective image from database
+	 * 
+	 * @param imageName
+	 * @return
+	 */
+	public boolean  addSongSourceAndImage(PlaySongsDto details)  {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		int res=0;
+
+		String sql="insert into song_source (song_name,song,song_image)values(?,?,?)";
+		try {
+			connection = ConnectionUtil.getConnection();
+			File imageFile = new File("D:\\projectMusic\\"+details.getImageSource());
+			File songFile =new File ("D:\\projectMusic\\"+details.getSongSource());
+   
+		    try (FileInputStream fis1 = new FileInputStream(songFile);
+					FileInputStream fis2 = new FileInputStream(imageFile))
+		    {
+				ps = connection.prepareStatement(sql);
+				ps.setString(1,details.getSongName());
+				ps.setBinaryStream(2, fis1, songFile.length());
+				ps.setBinaryStream(3, fis2, imageFile.length());
+			
+			res=ps.executeUpdate();
+		    }
+
+		
+		} catch (IOException| SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(ps, connection);
+		
+		}
+		return (res==1);
+
+}
 }

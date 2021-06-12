@@ -66,3 +66,13 @@ insert into playlist (playlist_name,song_id,user_id,created_on) values
 create table music_images(image_name varchar(70) not null,image bytea);
 
 insert into music_images(image_name,image) values('music1', pg_read_binary_file('D:\music1.jpg'));
+
+---song source table---
+create table song_source( song_source_id serial,
+					      song_name varchar(100) not null,
+						 song bytea,song_image bytea, foreign key(song_Name)
+						 references songs(song_Name) on delete cascade,
+						 primary key(song_source_id));
+						 
+--inserting song source-- 						
+insert into song_source(song_name,song) values('KUTTY_STORY', pg_read_binary_file('D:\projectMusic\KUTTY_STORY.mp3')),

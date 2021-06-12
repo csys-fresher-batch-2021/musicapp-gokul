@@ -41,7 +41,7 @@ public class AddSongsServlet extends HttpServlet {
 			String languageName = request.getParameter("languageName").toUpperCase();
 			String releasedOn =request.getParameter("releasedOn");
 			Date releasedDate=Date.valueOf(releasedOn);
-			
+
 			Song info=new Song(songName,movieName, releasedDate, languageName);
 			if((SongServices.isValidDetails(info))&&(!SongServices.isSongAvailable(info))&&SongServices.addSong(info))
 			{
@@ -53,9 +53,11 @@ public class AddSongsServlet extends HttpServlet {
 			}
 			
 			
-		} catch (Exception  e) {
+		} catch (Exception e) {
 	
 			e.printStackTrace();
+			response.sendRedirect("adminWorks.jsp?errorMessage=" + "Cannot add Song, Might Already exists");
+			
 		}
 
 	}
