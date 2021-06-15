@@ -13,19 +13,24 @@
 </style>
 </head>
 <body>
-
+	<%
+	String userName = (String) session.getAttribute("Name");
+	request.setAttribute("name", userName);
+	String song = request.getParameter("name");
+	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<div class=center1>
 			<p>All Songs In One Place!</p>
-					<div class="input-group">
-					<input type="search" class="form-control rounded"
-						placeholder="Search" aria-label="Search" name="songName" id="songName"
-						aria-describedby="search-addon" />
-					<button type="button" class="btn btn-outline-primary" onclick="getSearchedSong()" >search</button>
+			<div class="input-group">
+				<input type="search" class="form-control rounded"
+					placeholder="Search" aria-label="Search" name="songName"
+					id="songName" aria-describedby="search-addon" />
+				<button type="button" class="btn btn-outline-primary"
+					onclick="getSearchedSong()">search</button>
 
-				</div>
-	
+			</div>
+
 			<div class="container">
 				<h2>Song that you searching!</h2>
 				<div class="panel panel-default">
@@ -39,8 +44,9 @@
 									<th scope="col">Movie_Name</th>
 									<th scope="col">Language_Name</th>
 									<th scope="col">Play</th>
-									<th scope="col">Add </th>
-									<th scope="col">Delete </th>
+									<th scope="col">Add to PlayList</th>
+									<th scope="col">Like</th>
+
 
 								</thead>
 								<tbody id="SearchedSong">
@@ -68,9 +74,10 @@
 				"</td><td>" + song.songName +
 				"</td><td>" + song.movieName+
 				"</td><td>" + song.language+
-				"</td><td>" + "<a href=playSongs.jsp?name="+song.songName+">Play</a>" +
-				"</td><td>" + "<a href=playlist.jsp?name="+song.songName+">add to playlist </a>" +
-				"</td><td>" + "<a href=playlist.jsp?name="+song.songName+">delete</a>" ;
+				"</td><td>" + "<a href='playSongs.jsp?name="+song.songName+"'>Play</a>" +
+				"</td><td>" + "<a href='playlist.jsp?name="+song.songName+"'>add to playlist </a>" +
+				"</td><td>" + "<a href='LikedSongsServlet?songName="+song.songName+"&userName="+"<%=request.getAttribute("name")%>"+"''>Like</a>" ;
+		
 				}
 			  document.querySelector("#SearchedSong").innerHTML= content;
 		})

@@ -16,7 +16,11 @@
 <style>
 .center {
 	text-align: center;
+
+.center1 {
+	text-align: center;
 }
+
 </style>
 </head>
 <body>
@@ -24,9 +28,11 @@
 	String userName = (String) session.getAttribute("Name");
 	request.setAttribute("name", userName);
 	String song = request.getParameter("name");
+	System.out.println(song);
 	%>
 
 	<jsp:include page="header.jsp"></jsp:include>
+
 	<main class="container-fluid">
 		<div class="container">
 			<div class=center>
@@ -41,7 +47,7 @@
 			<div class="form-group">
 				<label for="songName">Song Name</label> <input type="text"
 					class="form-control" id="songName" placeholder="Enter songName"
-					name="songName" <%if (song != null)%> value=<%=song%>>
+					name="songName" <%if (song != null)%> value='<%=song%>'>
 			</div>
 			<button type="button" class="btn btn-primary"
 				onclick="addSongsInPlaylist()">Add</button>
@@ -144,10 +150,9 @@
 									<th scope="col">Song Realease date</th>
 									<th scope="col">Playlist creation date</th>
 									<th scope="col">Play</th>
-
-
-
-								</thead>
+									<th scope="col">Like</th>
+									<th scope="col">Delete</th>
+								  </thead>
 								<tbody id="PlayList">
 								</tbody>
 							</table>
@@ -172,7 +177,7 @@ function addSongsInPlaylist()
 	}
 
 		 
-		function getplaylistSong(){
+	function getplaylistSong(){
 	   let playlist=document.getElementById('playlist').value;
 	   var userName= " <%=request.getAttribute("name")%>";
 	
@@ -193,7 +198,9 @@ function addSongsInPlaylist()
 				"</td><td>" + input.languageName+
 				"</td><td>" + input.releasedOn+
 				"</td><td>" + input.createdOn+
-				"</td><td>" + "<a href=playSongs.jsp?name="+input.songName+">Play</a>";
+				"</td><td>" + "<a href='playSongs.jsp?name="+input.songName+"'>Play</a>"+
+				"</td><td>" + "<a href='LikedSongsServlet?songName="+input.songName+"&userName="+ "<%=request.getAttribute("name")%>"+"'>Like</a>" +
+				"</td><td><button type=\"button\" onclick=\"deleteSongsInPlaylist('"+input.playlistName+"')\" class=\"btn btn-danger\">Delete</button>";
 				
 				}}
 		
@@ -201,6 +208,7 @@ function addSongsInPlaylist()
 		})
    }
    
+	//search playlist
    function getAllPlaylist()
    {  
 	   var userName= " <%=request.getAttribute("name")%>";
@@ -240,8 +248,10 @@ function addSongsInPlaylist()
 					"</td><td>" + input.languageName+
 					"</td><td>" + input.releasedOn+
 					"</td><td>" + input.createdOn+
-					"</td><td>" + "<a href=playSongs.jsp?name="+input.songName+">Play</a>" ;
+					"</td><td>" + "<a href='playSongs.jsp?name="+input.songName+"'>Play</a>" +
 					
+					"</td><td>" + "<a href='LikedSongsServlet?songName="+input.songName+"&userName="+"<%=request.getAttribute("name")%>"+"'>Like</a>" +
+					"</td><td><button type=\"button\" onclick=\"deleteSongsInPlaylist('"+input.playlistName+"','"+input.songName+"')\" class=\"btn btn-danger\">Delete</button>";
 					
 					}}
 			
@@ -255,6 +265,15 @@ function addSongsInPlaylist()
 	{
 	       let playlistName=document.getElementById('playListName').value;
 		    let songName=document.getElementById('songName').value;
+		    var userName= " <%=request.getAttribute("name")%>";
+		 	document.location.href ="DeleteSongsInPlaylistServlet?playListName="
+				+ playlistName + "&songName=" + songName + "&userName="
+				+ userName;
+		 	}
+	function deleteSongsInPlaylist(playlistName,songName)
+	{
+	      console.log(playlistName);
+		   // let songName=document.getElementById('songName').value;
 		    var userName= " <%=request.getAttribute("name")%>";
 		 	document.location.href ="DeleteSongsInPlaylistServlet?playListName="
 				+ playlistName + "&songName=" + songName + "&userName="

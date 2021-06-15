@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,8 +53,6 @@ public class GetSongsFromPlaylistServlet extends HttpServlet {
 				out.print(json);
 				out.flush();
 			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("playlist.jsp");
-				dispatcher.forward(request, response);
 				String errorMessage = "Playlist not available";
 				response.sendRedirect("playlist.jsp?errorMessage=" + errorMessage);
 

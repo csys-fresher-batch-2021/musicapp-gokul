@@ -21,8 +21,7 @@
 		<div class=center>
 			<div class="card bg-light text-dark">
 				<div class="card-body-backgrund-dark">
-					<img src="GetSongImageServlet?imageName=<%=song%>" alt="<%=song%>"
-						>
+					<img src="GetSongImageServlet?imageName=<%=song%>" alt="<%=song%>">
 				</div>
 			</div>
 

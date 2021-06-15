@@ -1,7 +1,7 @@
 create table  language(language_Id serial,language_name varchar(10) unique);
 
 
-insert INTO language (language_name) values ('Tamil'),('Hindi'),('English');
+insert INTO language (language_name) values ('TAMIL'),('HINDI'),('ENGLISH');
 
 --UserDetails--
 create table  userDetail (
@@ -76,3 +76,13 @@ create table song_source( song_source_id serial,
 						 
 --inserting song source-- 						
 insert into song_source(song_name,song) values('KUTTY_STORY', pg_read_binary_file('D:\projectMusic\KUTTY_STORY.mp3')),
+---creating liked songs---
+create table liked_songs(
+liked_songs_id  serial primary key,
+song_name varchar(20) not null,
+
+user_name varchar(30) not null,
+
+foreign key(song_name) references songs(song_Name) on delete cascade,
+foreign key(user_name) references userDetail(user_name) on delete cascade
+);

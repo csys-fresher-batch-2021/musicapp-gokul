@@ -15,15 +15,16 @@
 
 		<div class=center>
 				<jsp:include page="message.jsp"></jsp:include>
+				<h3><strong>USER LOGIN !</strong></h3>
 			<form action="LoginServlet" method="post">
-				<br> <label for="userName">Enter Your UserName:</label> <input
+				<br> <label for="userName"><Strong>Enter  UserName:</Strong></label> <input
 					type="text" name="userName" id="userName"
 					placeholder="Enter UserName" required> <br> <br>
-				<label for="password">Enter Your Password: </label> <input
+				<label for="password"><Strong>Enter Password:<Strong></Strong> </label> <input
 					type="password" name="password" id="password"
 					placeholder="Enter Password" required> <br> <br>
 				<button class="btn btn-primary">Sign in</button>
-						<a href="adminLogin.jsp">Admin</a>
+						
 			</form>
 
 		</div>
