@@ -1,3 +1,6 @@
+<%@page import="in.gokul.model.Language"%>
+<%@page import="java.util.List"%>
+<%@page import="in.gokul.services.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -22,35 +25,81 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		
+		<%
+	String userName = (String) session.getAttribute("Name");
+	request.setAttribute("name", userName);
+	List<Language> languageList=DisplayLanguageService.displayLanguages();
+	int val=0;
+	%>
 
+		<div class="center1">
+			<div class="card-body"><jsp:include page="message.jsp"></jsp:include></div>
+		</div>
 		<div class="container">
 			<h2>Songs</h2>
 			<p>
 				All <strong>Movie songs </strong> listed here
 			</p>
+			<% for(Language item:languageList ){ %>
+
+
 			<div id="accordion">
 				<div class="card">
 					<div class="card-header">
-						<a class="card-link" data-toggle="collapse" href="#collapseOne">
-							Tamil </a>
+						<a class="card-link" data-toggle="collapse"
+							href="#collapse<%=item.getLanguage()%>"> <%=item.getLanguage()%>
+						</a>
 					</div>
-					<div id="collapseOne" class="collapse show"
+					<script>getAllSongs('<%=item.getLanguage()%>');
+					
+					function getAllSongs(language){
+						console.log(language);
+						let url = "DisplaySongsServlet";
+						fetch(url).then(res=> res.json()).then(res=>{
+						let Songs = res;
+						let content = "";
+						let count=0;
+						for(let input of Songs){
+							
+							if((input.language==language)){
+								count++;
+							content += "<tr><td>" + count + 
+							"</td><td>" + input.songName +
+							"</td><td>" + input.movieName+
+							"</td><td>" + "<a href='playSongs.jsp?name="+input.songName+"'>Play</a>" +
+							"</td><td>" + "<a href='playlist.jsp?name="+input.songName+"''>add to playlist </a>" +
+							"</td><td>" + "<a href='LikedSongsServlet?songName="+input.songName+"&userName="+ "<%=request.getAttribute("name")%>"+"''>Like</a>" ;
+					
+							
+							}
+						
+						}
+					
+						document.querySelector("#"+language).innerHTML= content;
+					})
+				}</script>
+					<div id="collapse<%=item.getLanguage()%>" <%if (val == 0) { val++;%>
+						class="collapse show" <%} else%> class="collapse"
 						data-parent="#accordion">
+
+
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered table-hover">
-									<caption>List of Songs in Tamil</caption>
+									<caption>
+										List of Songs in
+										<%=item.getLanguage()%></caption>
 									<thead class="thead-light">
 										<th scope="col">Song_Id</th>
 										<th scope="col">Song_Name</th>
 										<th scope="col">Movie_Name</th>
 										<th scope="col">Play</th>
-										<th scope="col">Add </th>
-										<th scope="col">Delete </th>
+										<th scope="col">Add</th>
+										<th scope="col">Likes</th>
+
 
 									</thead>
-									<tbody id="TamilSongsList">
+									<tbody id="<%=item.getLanguage()%>">
 									</tbody>
 								</table>
 
@@ -58,144 +107,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="card">
-					<div class="card-header">
-						<a class="collapsed card-link" data-toggle="collapse"
-							href="#collapseTwo"> Hindi </a>
-					</div>
-					<div id="collapseTwo" class="collapse" data-parent="#accordion">
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered table-hover">
-									<caption>List of Songs in Hindi</caption>
-									<thead class="thead-light">
-										<th scope="col">Song_Id</th>
-										<th scope="col">Song_Name</th>
-										<th scope="col">Movie_Name</th>
-									    <th scope="col">Play</th>
-										<th scope="col"> Add</th>
-										<th scope="col">Delete </th>
 
-									</thead>
-									<tbody id="HindiSongsList">
-									</tbody>
-								</table>
-
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-header">
-						<a class="collapsed card-link" data-toggle="collapse"
-							href="#collapseThree"> Malayalam </a>
-					</div>
-					<div id="collapseThree" class="collapse" data-parent="#accordion">
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered table-hover">
-									<caption>List of Songs in Malayalam</caption>
-									<thead class="thead-light">
-										<th scope="col">Song_Id</th>
-										<th scope="col">Song_Name</th>
-										<th scope="col">Movie_Name</th>
-										<th scope="col">Play</th>
-										<th scope="col"> Add</th>
-										<th scope="col">Delete </th>
-
-									</thead>
-									<tbody id="MalayalamSongsList">
-									</tbody>
-								</table>
-
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
+			<%
+			}
+			%>
 		</div>
 
 
 
 	</main>
-	<script>
-		function getAllTamilSongs(){
-			let url = "DisplaySongsServlet";
-			fetch(url).then(res=> res.json()).then(res=>{
-			let Songs = res;
-			let content = "";
-			let count=0;
-			for(let input of Songs){
-				count++;
-				if((input.language=="TAMIL")){
-				content += "<tr><td>" + count + 
-				"</td><td>" + input.songName +
-				"</td><td>" + input.movieName+
-				"</td><td>" + "<a href=playSongs.jsp?name="+input.songName+">Play</a>" +
-				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">add to playlist </a>" +
-				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">delete</a>" ;
-				}
-			
-			}
-		
-			document.querySelector("#TamilSongsList").innerHTML= content;
-		})
-	}
-	
 
-		function getAllHindiSongs(){
-			let url = "DisplaySongsServlet";
-			fetch(url).then(res=> res.json()).then(res=>{
-			let Songs = res;
-			let content = "";
-			let count=0;
-			for(let input of Songs){
-			
-				if((input.language=="HINDI")){
-					count++;
-				content += "<tr><td>" + count + 
-				"</td><td>" + input.songName +
-				"</td><td>" + input.movieName+
-				"</td><td>" + "<a href=playSongs.jsp?name="+input.songName+">Play</a>" +
-				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">add to playlist </a>" +
-				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">delete</a>" ;
-				}
-			
-			}
-		
-			document.querySelector("#HindiSongsList").innerHTML= content;
-		})
-	}
-		function getAllMalayalamSongs(){
-			let url = "DisplaySongsServlet";
-			fetch(url).then(res=> res.json()).then(res=>{
-			let Songs = res;
-			let content = "";
-			let count=0;
-			for(let input of Songs){
-			
-				if((input.language=="MALAYALAM")){
-					count++;
-				content += "<tr><td>" + count + 
-				"</td><td>" + input.songName +
-				"</td><td>" + input.movieName+
-				"</td><td>" + "<a href=playSongs.jsp?name="+input.songName+">Play</a>" +
-			     "</td><td>" + "<a href=playlist.jsp?name="+input.songName+">add to playlist </a>"+ 
-				"</td><td>" + "<a href=playlist.jsp?name="+input.songName+">delete</a>" ;
-				}
-			
-			}
-	
-			document.querySelector("#MalayalamSongsList").innerHTML= content;
-		})
-	}
-		
-	
-		 getAllTamilSongs();
-		 getAllHindiSongs();
-		 getAllMalayalamSongs();
-		
-		 
-</script>
+
+
 </body>
 </html>

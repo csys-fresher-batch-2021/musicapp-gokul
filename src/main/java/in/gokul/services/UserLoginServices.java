@@ -1,13 +1,13 @@
 package in.gokul.services;
 
 import in.gokul.dao.UserLoginDao;
+import in.gokul.exception.ServicesException;
 import in.gokul.model.User;
 import in.gokul.validation.UserValidator;
 
 public class UserLoginServices {
-	private UserLoginServices()
-	{
-		
+	private UserLoginServices() {
+
 	}
 
 	/**
@@ -24,11 +24,20 @@ public class UserLoginServices {
 
 			User user = new User(userName, password);
 			User userDetail = UserLoginDao.getUserDetailsByUserName(user);
-			if (userDetail.getPassword().equals(user.getPassword())) {
-				validUser = true;
+
+			try {
+				if ((userDetail.getUserName().equals(user.getUserName()))
+						&& (userDetail.getPassword().equals(user.getPassword()))) {
+					validUser = true;
+				}
+			} catch (Exception e) {
+				throw new ServicesException("invalid login credentials");
+
 			}
+
 		}
 		return validUser;
+
 	}
 
 }

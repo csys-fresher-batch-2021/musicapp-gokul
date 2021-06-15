@@ -15,6 +15,9 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<div class=center>
+			<h3>
+				<strong>ADMIN LOGIN !</strong>
+			</h3>
 			<%
 			String errorMessage = request.getParameter("errorMessage");
 
@@ -23,10 +26,10 @@
 			}
 			%>
 			<form action="AdminServlet" method="post">
-				<br> <label for="adminName">Enter Your AdminName:</label> <input
-					type="text" name="adminName" id="adminName"
+				<br> <label for="adminName"><Strong>Enter
+						AdminName:</Strong></label> <input type="text" name="adminName" id="adminName"
 					placeholder="Enter AdminName" required><br> <br>
-				<label for="password">Enter Your Password: </label> <input
+				<label for="password"><Strong>Enter Password:</Strong> </label> <input
 					type="password" name="password" id="password"
 					placeholder="Enter Password" required> <br> <br>
 				<button class="btn btn-primary">Sign in</button>

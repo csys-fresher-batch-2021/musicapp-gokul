@@ -33,6 +33,8 @@
 					href="searchSong.jsp">SearchSongs</a></li>
 					<li class="nav-item active"><a class="nav-link"
 					href="playlist.jsp">Playlist</a></li>
+						<li class="nav-item active"><a class="nav-link"
+					href="trendingSongs.jsp">Trending Songs </a></li>
 		     <%} %>	
 		 <% if (role==admin) {
 			%>
