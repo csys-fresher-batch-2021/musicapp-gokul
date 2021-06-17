@@ -28,23 +28,28 @@
 							</div>
 						</div>
 					</div>
-					<jsp:include page="message.jsp"></jsp:include>
+					<%
+					String addLanguageInfo = request.getParameter("addLanguageInfo");
+					if (addLanguageInfo != null) {
+						out.println("<font color='green'>" + addLanguageInfo + "</font>");
+					}
+					String addLanguageErrorMessage = request.getParameter("addLanguageErrorMessage");
+					if (addLanguageErrorMessage != null) {
+						out.println("<font color='red'>" + addLanguageErrorMessage + "</font>");
+					}
+					%>
+
+
 					<h3>--Language Addition--</h3>
 					<form action="AddLanguageServlet" method="get">
 						<label for="addLanguage">Language </label> <br> <input
 							type="text" name="addLanguage" id="addLanguage"
 							placeholder="Enter language" required> <br> <br>
 						<button class="btn btn-primary">Add</button>
+						<button type="reset" class="btn btn-danger">reset</button>
 					</form>
 
-					<h3>--Delete Language--</h3>
 
-					<form action="DeleteLanguageServlet" method="get">
-						<label for="deleteLanguage">Delete</label> <br> <input
-							type="text" name="deleteLanguage" id="deleteLanguage"
-							placeholder="Enter language" required> <br> <br>
-						<button class="btn btn-danger">Delete</button>
-					</form>
 
 				</div>
 			</div>
@@ -63,7 +68,16 @@
 						</div>
 					</div>
 				</div>
-				<jsp:include page="message.jsp"></jsp:include>
+				<%
+					String addSongInfo = request.getParameter("addSongInfo");
+					if (addSongInfo != null) {
+						out.println("<font color='green'>" + addSongInfo + "</font>");
+					}
+					String addSongErrorMessage = request.getParameter("addSongErrorMessage");
+					if (addSongErrorMessage != null) {
+						out.println("<font color='red'>" + addSongErrorMessage + "</font>");
+					}
+					%>
 				<form>
 					<label for="songName">SongName </label> <br> <input
 						type="text" name="songName" id="songName"
@@ -78,8 +92,8 @@
 						type="date" name="relesedOn" id="releasedOn"
 						placeholder="Select Date" value='26-05-2021'> <br> <br>
 					<button type="button" class="btn btn-primary" onclick="addSongs()">Add</button>
-					<button type="button" class="btn btn-danger"
-						onclick="deleteSongs()">Delete</button>
+					<button type="reset" class="btn btn-danger">reset</button>
+		
 				</form>
 
 
@@ -108,10 +122,10 @@
 					name="songSource" accept="mp3/*"><br> <br> <label
 					for="imageSource"><Strong>Select a image:</Strong></label><br>
 				<input type="file" id="imageSource" name="imageSource"
-					accept="image/*"><br>
-				<br>
+					accept="image/*"><br> <br>
 
 				<button type="submit" class="btn btn-primary">Add</button>
+				<button type="reset" class="btn btn-danger">reset</button>
 
 			</form>
 		</div>
@@ -135,16 +149,7 @@
 					+ languageName + "&releasedOn=" + releasedON;
 
 		}
-		function deleteSongs() {
-			let songName = document.getElementById('songName').value;
-			let movieName = document.getElementById('movieName').value;
-			let languageName = document.getElementById('languageName').value;
-			let releasedON = document.getElementById('releasedOn').value;
-			document.location.href = "DeleteSongsServlet?songName=" + songName
-					+ "&movieName=" + movieName + "&languageName="
-					+ languageName + "&releasedOn=" + releasedON;
-
-		}
+	
 	</script>
 </body>
 </html>

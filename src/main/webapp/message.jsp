@@ -7,4 +7,5 @@ String infoMessage = request.getParameter("info");
 if (infoMessage != null) {
 	out.println("<font color='green'>" + infoMessage + "</font>");
 }
+
 %>

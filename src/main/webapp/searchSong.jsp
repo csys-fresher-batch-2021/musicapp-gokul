@@ -74,9 +74,9 @@
 				"</td><td>" + song.songName +
 				"</td><td>" + song.movieName+
 				"</td><td>" + song.language+
-				"</td><td>" + "<a href='playSongs.jsp?name="+song.songName+"'>Play</a>" +
-				"</td><td>" + "<a href='playlist.jsp?name="+song.songName+"'>add to playlist </a>" +
-				"</td><td>" + "<a href='LikedSongsServlet?songName="+song.songName+"&userName="+"<%=request.getAttribute("name")%>"+"''>Like</a>" ;
+				"</td><td>" + "<a class='btn btn-info' href='playSongs.jsp?name="+song.songName+"'>Play</a>" +
+				"</td><td>" + "<a class='btn btn-primary' href='playlist.jsp?name="+song.songName+"'>add to playlist </a>" +
+				"</td><td>" + "<a class='btn btn-success' href='LikedSongsServlet?songName="+song.songName+"&userName="+"<%=request.getAttribute("name")%>"+"''>Like</a>" ;
 		
 				}
 			  document.querySelector("#SearchedSong").innerHTML= content;

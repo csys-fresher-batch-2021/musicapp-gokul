@@ -30,6 +30,10 @@
 	request.setAttribute("name", userName);
 	List<Language> languageList=DisplayLanguageService.displayLanguages();
 	int val=0;
+	
+	String role = (String) session.getAttribute("ROLE");
+	String admin="ADMIN";
+
 	%>
 
 		<div class="center1">
@@ -53,7 +57,6 @@
 					<script>getAllSongs('<%=item.getLanguage()%>');
 					
 					function getAllSongs(language){
-						console.log(language);
 						let url = "DisplaySongsServlet";
 						fetch(url).then(res=> res.json()).then(res=>{
 						let Songs = res;
@@ -63,13 +66,21 @@
 							
 							if((input.language==language)){
 								count++;
+								
 							content += "<tr><td>" + count + 
 							"</td><td>" + input.songName +
 							"</td><td>" + input.movieName+
-							"</td><td>" + "<a href='playSongs.jsp?name="+input.songName+"'>Play</a>" +
-							"</td><td>" + "<a href='playlist.jsp?name="+input.songName+"''>add to playlist </a>" +
-							"</td><td>" + "<a href='LikedSongsServlet?songName="+input.songName+"&userName="+ "<%=request.getAttribute("name")%>"+"''>Like</a>" ;
-					
+							"</td><td><a class='btn btn-info' href='playSongs.jsp?name="+input.songName+"'>Play</a>" +
+
+							"</td><td>" + "<a class='btn btn-primary' href='playlist.jsp?name="+input.songName+"'>add to playlist </a>" +
+							"</td><td>" + "<a class='btn btn-success' href='LikedSongsServlet?songName="+input.songName+"&userName="+ "<%=request.getAttribute("name")%>"+"''>Like</a>" +
+							
+									<%if (role == admin) {%>
+								
+							"</td><td>"+ "<a  class='btn btn-danger' href='DeleteSongsServlet?songName="+input.songName+"&movieName="+input.movieName+"&languageName="+input.language+"'  >delete</a>";
+								<%} else {%>
+								"</td>";
+								<%}%>
 							
 							}
 						
@@ -78,9 +89,10 @@
 						document.querySelector("#"+language).innerHTML= content;
 					})
 				}</script>
-					<div id="collapse<%=item.getLanguage()%>" <%if (val == 0) { val++;%>
-						class="collapse show" <%} else%> class="collapse"
-						data-parent="#accordion">
+					<div id="collapse<%=item.getLanguage()%>"
+						<%if (val == 0) {
+	val++;%> class="collapse show" <%} else%>
+						class="collapse" data-parent="#accordion">
 
 
 						<div class="card-body">
@@ -96,6 +108,13 @@
 										<th scope="col">Play</th>
 										<th scope="col">Add</th>
 										<th scope="col">Likes</th>
+										<%
+										if (role == admin) {
+										%>
+										<th scope="col">Delete</th>
+										<%
+										}
+										%>
 
 
 									</thead>
@@ -114,6 +133,14 @@
 			%>
 		</div>
 
+
+		<script>
+function deleteSong(songName,movieName,language)
+{
+	console.log(songName);
+	document.location.href="DeleteSongsServlet?songName="+songName+"&movieName="+movieName+"&languageName="+language;
+}
+</script>
 
 
 	</main>
