@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<%
+	<%
 	String userName = (String) session.getAttribute("Name");
 	request.setAttribute("name", userName);
 
@@ -88,9 +88,9 @@
 					"</td><td>" + input.language+
 					"</td><td>" + input.releasedOn+
 					
-					"</td><td>" + "<a href='playSongs.jsp?name="+input.songName+"'>Play</a>" +
-				     "</td><td>" + "<a href='playlist.jsp?name="+input.songName+"'>add to playlist </a>"+ 
-				     "</td><td>" + "<a href='LikedSongsServlet?songName="+input.songName+"&userName="+ "<%=request.getAttribute("name")%>"+"'>Like</a>" ;
+					"</td><td>" + "<a class='btn btn-info' href='playSongs.jsp?name="+input.songName+"'>Play</a>" +
+				     "</td><td>" + "<a class='btn btn-primary' href='playlist.jsp?name="+input.songName+"'>add to playlist </a>"+ 
+				     "</td><td>" + "<a class='btn btn-success' href='LikedSongsServlet?songName="+input.songName+"&userName="+ "<%=request.getAttribute("name")%>"+"'>Like</a>" ;
 			 }
 		
 				document.querySelector("#TopSongsList").innerHTML= content;

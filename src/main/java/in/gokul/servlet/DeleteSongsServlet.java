@@ -1,7 +1,7 @@
 package in.gokul.servlet;
 
 import java.io.IOException;
-import java.sql.Date;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,46 +18,42 @@ import in.gokul.services.SongServices;
 @WebServlet("/DeleteSongsServlet")
 public class DeleteSongsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteSongsServlet() {
-        super();
-
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public DeleteSongsServlet() {
+		super();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		try {
 			String songName = request.getParameter("songName").toUpperCase();
 			String movieName = request.getParameter("movieName").toUpperCase();
 			String languageName = request.getParameter("languageName").toUpperCase();
-			String releasedOn =request.getParameter("releasedOn");
-			Date releasedDate=Date.valueOf(releasedOn);
-			
-			Song info=new Song(songName,movieName, releasedDate, languageName);
-			
-			if((SongServices.isValidDetails(info))&&(SongServices.deleteSong(info)))
-			{
-				
-				response.sendRedirect("adminWorks.jsp?info=" + "succesfully deleted");
-			}
-			else
-			{
-				response.sendRedirect("adminWorks.jsp?errorMessage=" + "Cannot delete Songs ");
-				
+
+			Song info = new Song(songName, movieName, languageName);
+
+			if ((SongServices.deleteSong(info))) {
+
+				response.sendRedirect("displaySongs.jsp?info=" + "Succesfully deleted !");
+			} else {
+				response.sendRedirect("displaySongs.jsp?errorMessage=" + "Cannot delete Songs ");
+
 			}
 		} catch (IOException e) {
-		
+
+			response.sendRedirect("displaySongs.jsp?errorMessage=" + "Cannot delete Songs");
 			e.printStackTrace();
 		}
 	}
-
-
 
 }

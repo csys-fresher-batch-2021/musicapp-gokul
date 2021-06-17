@@ -322,6 +322,11 @@ public class SongsDao {
 		return (result == 1);
 	}
 
+	/**
+	 * this dao returns the top10 songs based on likes
+	 * 
+	 * @return
+	 */
 	public List<Song> getTopSongs() {
 		List<Song> list = new ArrayList<>();
 
@@ -355,4 +360,64 @@ public class SongsDao {
 
 		return list;
 	}
+
+	public boolean isSongSourceAvailable(String songSource) {
+		String selectSQLQuery = "select exists ((select song_name  from song_source where song_name =? ) )";
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+		boolean isExists = false;
+		try {
+			connection = ConnectionUtil.getConnection();
+			prepareStatement = connection.prepareStatement(selectSQLQuery);
+			prepareStatement.setString(1, songSource);
+
+			resultSet = prepareStatement.executeQuery();
+			if (resultSet.next()) {
+				isExists = resultSet.getBoolean("exists");
+
+			}
+		} catch (DbException | SQLException e) {
+			e.printStackTrace();
+			throw new DbException("Can't check songSource from database ");
+		} finally {
+			ConnectionUtil.close(prepareStatement, connection);
+		}
+		return isExists;
+
+	}
+
+	/**
+	 * this method return true if song is already in the database
+	 * 
+	 * @param detail
+	 * @return
+	 */
+	public boolean isSongAvailable(String songName) {
+
+		String selectSQLQuery = "select exists (select song_name  from songs where song_Name =?)";
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+		boolean isExists = false;
+		try {
+			connection = ConnectionUtil.getConnection();
+			prepareStatement = connection.prepareStatement(selectSQLQuery);
+			prepareStatement.setString(1, songName);
+
+			resultSet = prepareStatement.executeQuery();
+			if (resultSet.next()) {
+				isExists = resultSet.getBoolean("exists");
+
+			}
+		} catch (DbException | SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			ConnectionUtil.close(prepareStatement, connection);
+		}
+
+		return isExists;
+	}
+
 }

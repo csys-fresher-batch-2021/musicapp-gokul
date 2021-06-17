@@ -39,15 +39,21 @@ public class AddLanguageServlet extends HttpServlet {
 		try {
 			String language = request.getParameter("addLanguage").toUpperCase();
 			Language inputlanguage = new Language(language);
-			if ((LanguageValidator.isValidLanguage(language)) && (LanguageValidator.validlengthforLanguage(language))&&(!(AdminServices.isLanguageAlreadyAvailable(inputlanguage)))) 
-			{
-				if(AddLanguagesService.addLanguage(inputlanguage))
-				{
-				String info = "Language " + language + " added Succesfully";
-				response.sendRedirect("adminWorks.jsp?info=" + info);
+			if ((LanguageValidator.isValidLanguage(language)) && (LanguageValidator.validlengthforLanguage(language))) {
+				if ((!(AdminServices.isLanguageAlreadyAvailable(inputlanguage)))) {
+					if (AddLanguagesService.addLanguage(inputlanguage)) {
+						String info = "Language " + language + " added Succesfully";
+						response.sendRedirect("adminWorks.jsp?addLanguageInfo=" + info);
+					} else {
+						response.sendRedirect("adminWorks.jsp?addLanguageErrorMessage=" + "Cannot add Language");
+					}
+				} else {
+					response.sendRedirect("adminWorks.jsp?addLanguageErrorMessage=" + "Already Exists");
 				}
-			} else {
-				response.sendRedirect("adminWorks.jsp?errorMessage=" + "Cannot add language ");
+			}
+
+			else {
+				response.sendRedirect("adminWorks.jsp?addLanguageErrorMessage=" + "Invalid Details");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -143,4 +143,25 @@ public class SongServices {
 		SongsDao dao = new SongsDao();
 		return dao.getTopSongs();
 	}
+	/**
+	 * this method returns true if song source is already available
+	 * @param songSource
+	 * @return
+	 */
+	public static boolean isSongSourceAvailable(String songSource)
+	{
+		SongsDao dao=new SongsDao();
+		return dao.isSongSourceAvailable(songSource);
+		
+	}
+	/**
+	 * this method returns true is song available 
+	 * @param songName
+	 * @return
+	 */
+	public static boolean isSongAvailableInSongsDatabase(String songName)
+	{
+		SongsDao dao=new SongsDao();
+		return dao.isSongAvailable(songName);
+	}
 }

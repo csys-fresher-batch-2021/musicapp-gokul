@@ -22,11 +22,12 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="index.jsp">Home <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item active"><a class="nav-link" href="display.jsp">Languages</a></li>
+				
 			
 				<%
 			if (role!=null) {
 			%>
+			    <li class="nav-item active"><a class="nav-link" href="display.jsp">Languages</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="displaySongs.jsp">AllSongs</a></li>
 					<li class="nav-item active"><a class="nav-link"

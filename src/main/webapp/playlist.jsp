@@ -16,11 +16,13 @@
 <style>
 .center {
 	text-align: center;
-
-.center1 {
-	text-align: center;
+	.
+	center1
+	{
+	text-align
+	:
+	center;
 }
-
 </style>
 </head>
 <body>
@@ -35,26 +37,55 @@
 
 	<main class="container-fluid">
 		<div class="container">
-			<div class=center>
-				<h2>Playlist Creation</h2>
 
-				<jsp:include page="message.jsp"></jsp:include></div>
-			<div class="form-group">
-				<label for="playListName">PlayList Name</label> <input type="text"
-					class="form-control" id="playListName"
-					placeholder="Enter playList Name" name="playListName">
+
+
+
+
+			<div class="container">
+
+				<div class="card">
+					<div class="card-body">
+						<div class="container">
+
+							<div class=center>
+								<h2>Playlist Creation</h2>
+							</div>
+
+							<div class=center>
+								<button type="button" class="btn btn-info"
+									data-toggle="collapse" data-target="#demo1">Create
+									Playlist</button>
+							</div>
+							<div id="demo1" class="collapse-show">
+
+								<div class="card-body">
+									<div class=center>
+
+										<jsp:include page="message.jsp"></jsp:include></div>
+									<div class="form-group">
+										<label for="playListName">PlayList Name</label> <input
+											type="text" class="form-control" id="playListName"
+											placeholder="Enter playList Name" name="playListName">
+									</div>
+									<div class="form-group">
+										<label for="songName">Song Name</label> <input type="text"
+											class="form-control" id="songName"
+											placeholder="Enter songName" name="songName"
+											<%if (song != null)%> value='<%=song%>'>
+									</div>
+									<button type="button" class="btn btn-primary"
+										onclick="addSongsInPlaylist()">Add</button>
+									<button type="button" class="btn btn-danger"
+										onclick="deleteSongsInPlaylist()">delete</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="songName">Song Name</label> <input type="text"
-					class="form-control" id="songName" placeholder="Enter songName"
-					name="songName" <%if (song != null)%> value='<%=song%>'>
-			</div>
-			<button type="button" class="btn btn-primary"
-				onclick="addSongsInPlaylist()">Add</button>
-			<button type="button" class="btn btn-danger"
-				onclick="deleteSongsInPlaylist()">delete</button>
 		</div>
-
 
 
 		<div class="container">
@@ -98,35 +129,54 @@
 			</div>
 		</div>
 
+		<div class="container">
 
+			<div class="card">
+				<div class="card-body">
+					<div class="container">
 
+						<div class=center>
+							<h2>Search Playlist</h2>
+						</div>
 
+						<div class=center>
+							<button type="button" class="btn btn-success"
+								data-toggle="collapse" data-target="#search">Search
+								playlist</button>
+						</div>
+						<div id="search" class="collapse">
 
-		<div class="dropdown">
-			<div class="container">
-				<div class=center>
-					<h2>Search Your Playlists Here</h2>
-				</div>
+							<div class="card-body">
+								<div class="card">
+									<div class="card-body">
+										<div class="card bg-light">
+											<div class="card-body text-center">
+												<p class="card-text">
+												<div class="input-group">
+													<input type="search" class="form-control rounded"
+														placeholder="Enter PlaylistName" aria-label="Search"
+														name="playlist" id="playlist"
+														aria-describedby="search-addon" />
+													<button type="button" onclick="getplaylistSong()"
+														class="btn btn-outline-success">search</button>
 
-				<div class="card">
-					<div class="card-body">
-						<div class="card bg-light">
-							<div class="card-body text-center">
-								<p class="card-text">
-								<div class="input-group">
-									<input type="search" class="form-control rounded"
-										placeholder="Enter PlaylistName" aria-label="Search"
-										name="playlist" id="playlist" aria-describedby="search-addon" />
-									<button type="button" onclick="getplaylistSong()"
-										class="btn btn-outline-primary">search</button>
-
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+
+
+
+
 
 
 
@@ -136,7 +186,7 @@
 					<a class="card-link" data-toggle="collapse" href="#collapseOne">
 						Playlist </a>
 				</div>
-				<div id="collapseOne" class="collapse show" data-parent="#accordion">
+				<div id="collapseOne" class="collapse-show" data-parent="#accordion">
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">
@@ -147,12 +197,11 @@
 									<th scope="col">Song_Name</th>
 									<th scope="col">Movie_Name</th>
 									<th scope="col">Language_Name</th>
-									<th scope="col">Song Realease date</th>
+									<th scope="col">Song Released date</th>
 									<th scope="col">Playlist creation date</th>
 									<th scope="col">Play</th>
-									<th scope="col">Like</th>
 									<th scope="col">Delete</th>
-								  </thead>
+								</thead>
 								<tbody id="PlayList">
 								</tbody>
 							</table>
@@ -198,8 +247,7 @@ function addSongsInPlaylist()
 				"</td><td>" + input.languageName+
 				"</td><td>" + input.releasedOn+
 				"</td><td>" + input.createdOn+
-				"</td><td>" + "<a href='playSongs.jsp?name="+input.songName+"'>Play</a>"+
-				"</td><td>" + "<a href='LikedSongsServlet?songName="+input.songName+"&userName="+ "<%=request.getAttribute("name")%>"+"'>Like</a>" +
+				"</td><td>" + "<a class='btn btn-info' href='playSongs.jsp?name="+input.songName+"'>Play</a>"+
 				"</td><td><button type=\"button\" onclick=\"deleteSongsInPlaylist('"+input.playlistName+"')\" class=\"btn btn-danger\">Delete</button>";
 				
 				}}
@@ -222,7 +270,7 @@ function addSongsInPlaylist()
 				count++;
 				content +="<tr><td>" + count + 
 				"</td><td>" + input.playlistName +
-				"</td><td><button type=\"button\" onclick=\"getplaylistSongs('"+input.playlistName+"')\" class=\"btn btn-primary\">Show all Songs</button></td></tr>";
+				"</td><td><button type=\"button\" onclick=\"getplaylistSongs('"+input.playlistName+"')\" class=\"btn btn-warning\">Show all Songs</button></td></tr>";
 			}
 			document.querySelector("#AllPlaylist").innerHTML= content;
        })
@@ -248,9 +296,7 @@ function addSongsInPlaylist()
 					"</td><td>" + input.languageName+
 					"</td><td>" + input.releasedOn+
 					"</td><td>" + input.createdOn+
-					"</td><td>" + "<a href='playSongs.jsp?name="+input.songName+"'>Play</a>" +
-					
-					"</td><td>" + "<a href='LikedSongsServlet?songName="+input.songName+"&userName="+"<%=request.getAttribute("name")%>"+"'>Like</a>" +
+					"</td><td>" + "<a class='btn btn-info' href='playSongs.jsp?name="+input.songName+"'>Play</a>" +
 					"</td><td><button type=\"button\" onclick=\"deleteSongsInPlaylist('"+input.playlistName+"','"+input.songName+"')\" class=\"btn btn-danger\">Delete</button>";
 					
 					}}

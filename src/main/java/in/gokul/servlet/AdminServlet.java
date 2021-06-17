@@ -45,7 +45,7 @@ public class AdminServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("ROLE", "ADMIN");
 				session.setAttribute("Name", adminName);
-				session.setMaxInactiveInterval(300); 
+				session.setMaxInactiveInterval(800); 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("adminWorks.jsp");
 				dispatcher.forward(request, response);
 			} else {
