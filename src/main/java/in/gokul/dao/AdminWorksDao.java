@@ -27,7 +27,7 @@ public class AdminWorksDao {
 		try {
 			connection = ConnectionUtil.getConnection();
 			prepareStatement = connection.prepareStatement(selectSQLQuery);
-			prepareStatement.setString(1, detail.getLanguage().trim());
+			prepareStatement.setString(1, detail.getLanguageName().trim());
 	
 
 			resultSet = prepareStatement.executeQuery();

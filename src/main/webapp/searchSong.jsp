@@ -39,10 +39,10 @@
 							<table class="table table-bordered table-hover">
 								<caption>List of Songs</caption>
 								<thead class="thead-light">
-									<th scope="col">Song_Id</th>
-									<th scope="col">Song_Name</th>
-									<th scope="col">Movie_Name</th>
-									<th scope="col">Language_Name</th>
+									<th scope="col">Song No</th>
+									<th scope="col">Song Name</th>
+									<th scope="col">Movie Name</th>
+									<th scope="col">Language Name</th>
 									<th scope="col">Play</th>
 									<th scope="col">Add to PlayList</th>
 									<th scope="col">Like</th>

@@ -20,6 +20,7 @@ import in.gokul.validation.Validator;
  */
 @WebServlet("/AddSongsInPlaylistServlet")
 public class AddSongsInPlaylistServlet extends HttpServlet {
+	private static final String PLAYLIST_JSP_ERROR_MESSAGE = "playlist.jsp?errorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -54,15 +55,15 @@ public class AddSongsInPlaylistServlet extends HttpServlet {
 
 				} else {
 					String errorMessage = "Cannot add Song in the playlist";
-					response.sendRedirect("playlist.jsp?errorMessage=" + errorMessage);
+					response.sendRedirect(PLAYLIST_JSP_ERROR_MESSAGE + errorMessage);
 				}
 			} else {
 				String errorMessage = "Enter Valid details";
-				response.sendRedirect("playlist.jsp?errorMessage=" + errorMessage);
+				response.sendRedirect(PLAYLIST_JSP_ERROR_MESSAGE + errorMessage);
 			}
 		} catch (IOException | DbException e) {
 			String errorMessage = "Cannot add Song in the playlist";
-			response.sendRedirect("playlist.jsp?errorMessage=" + errorMessage);
+			response.sendRedirect(PLAYLIST_JSP_ERROR_MESSAGE + errorMessage);
 
 		}
 	}

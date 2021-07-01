@@ -1,9 +1,9 @@
 package in.gokul.dao;
 
-import java.io.File;
 import java.io.FileInputStream;
 
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -14,13 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.gokul.dto.LikedSongsDto;
-import in.gokul.dto.PlaySongsDto;
+import in.gokul.dto.SongsDto;
 import in.gokul.exception.DbException;
 
 import in.gokul.model.Song;
 import in.gokul.util.ConnectionUtil;
 
 public class SongsDao {
+	private static final String LANGUAGE_NAME = "language_name";
+	private static final String EXISTS = "exists";
+
 	/**
 	 * This method fetches all the languages from the database musify and returns in
 	 * the form of list
@@ -40,7 +43,7 @@ public class SongsDao {
 			while (resultSet.next()) {
 				String songName = resultSet.getString("song_Name");
 				String movieName = resultSet.getString("movie_Name");
-				String languageName = resultSet.getString("language_name");
+				String languageName = resultSet.getString(LANGUAGE_NAME);
 
 				Song input = new Song(songName, movieName, languageName);
 				songsList.add(input);
@@ -78,7 +81,7 @@ public class SongsDao {
 			while (resultSet.next()) {
 				String song = resultSet.getString("song_Name");
 				String movie = resultSet.getString("movie_Name");
-				String language = resultSet.getString("language_name");
+				String language = resultSet.getString(LANGUAGE_NAME);
 
 				input = new Song(song, movie, language);
 				songList.add(input);
@@ -153,7 +156,7 @@ public class SongsDao {
 
 			resultSet = prepareStatement.executeQuery();
 			if (resultSet.next()) {
-				isExists = resultSet.getBoolean("exists");
+				isExists = resultSet.getBoolean(EXISTS);
 
 			}
 		} catch (DbException | SQLException e) {
@@ -233,35 +236,32 @@ public class SongsDao {
 	 * @param imageName
 	 * @return
 	 */
-	public boolean addSongSourceAndImage(PlaySongsDto details) {
+	public boolean addSongSourceAndImage(SongsDto details) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int res = 0;
 
 		String sql = "insert into song_source (song_name,song,song_image)values(?,?,?)";
 		try {
-			connection = ConnectionUtil.getConnection();
-			File imageFile = new File("D:\\projectMusic\\" + details.getImageSource());
-			File songFile = new File("D:\\projectMusic\\" + details.getSongSource());
 
-			try (FileInputStream fis1 = new FileInputStream(songFile);
-					FileInputStream fis2 = new FileInputStream(imageFile)) {
+			connection = ConnectionUtil.getConnection();
+
+			try (FileInputStream fis1 = new FileInputStream(details.getSongFile());
+					FileInputStream fis2 = new FileInputStream(details.getImageFile())) {
 				ps = connection.prepareStatement(sql);
 				ps.setString(1, details.getSongName());
-				ps.setBinaryStream(2, fis1, songFile.length());
-				ps.setBinaryStream(3, fis2, imageFile.length());
+				ps.setBinaryStream(2, fis1, details.getSongFile().length());
+				ps.setBinaryStream(3, fis2, details.getImageFile().length());
 
 				res = ps.executeUpdate();
+			} catch (SQLException | IOException e) {
+				e.printStackTrace();
 			}
-
-		} catch (IOException | SQLException e) {
-			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(ps, connection);
 
 		}
 		return (res == 1);
-
 	}
 
 	/**
@@ -283,7 +283,7 @@ public class SongsDao {
 			pst.setString(2, details.getSongName());
 			rst = pst.executeQuery();
 			if (rst.next()) {
-				isExists = rst.getBoolean("exists");
+				isExists = rst.getBoolean(EXISTS);
 
 			}
 			return isExists;
@@ -344,7 +344,7 @@ public class SongsDao {
 			while (rst.next()) {
 				String songName = rst.getString("song_name");
 				String movieName = rst.getString("movie_name");
-				String languageName = rst.getString("language_name");
+				String languageName = rst.getString(LANGUAGE_NAME);
 				Date releasedOn = rst.getDate("released_On");
 				Song song = new Song(songName, movieName, releasedOn, languageName);
 				list.add(song);
@@ -374,7 +374,7 @@ public class SongsDao {
 
 			resultSet = prepareStatement.executeQuery();
 			if (resultSet.next()) {
-				isExists = resultSet.getBoolean("exists");
+				isExists = resultSet.getBoolean(EXISTS);
 
 			}
 		} catch (DbException | SQLException e) {
@@ -407,7 +407,7 @@ public class SongsDao {
 
 			resultSet = prepareStatement.executeQuery();
 			if (resultSet.next()) {
-				isExists = resultSet.getBoolean("exists");
+				isExists = resultSet.getBoolean(EXISTS);
 
 			}
 		} catch (DbException | SQLException e) {

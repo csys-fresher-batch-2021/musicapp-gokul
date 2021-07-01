@@ -24,7 +24,7 @@ public boolean  addLanguage(Language language)
 		connection=ConnectionUtil.getConnection();
 		String sql="insert into language(language_name)values(?)";
 		pst=connection.prepareStatement(sql);
-		pst.setString(1,language.getLanguage());
+		pst.setString(1,language.getLanguageName());
 		int result=pst.executeUpdate();
 		return (result==1);
 	}

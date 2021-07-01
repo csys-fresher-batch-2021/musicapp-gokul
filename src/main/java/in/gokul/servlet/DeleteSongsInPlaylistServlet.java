@@ -19,6 +19,7 @@ import in.gokul.validation.Validator;
  */
 @WebServlet("/DeleteSongsInPlaylistServlet")
 public class DeleteSongsInPlaylistServlet extends HttpServlet {
+	private static final String PLAYLIST_JSP_ERROR_MESSAGE = "playlist.jsp?errorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -52,15 +53,15 @@ public class DeleteSongsInPlaylistServlet extends HttpServlet {
 					response.sendRedirect("playlist.jsp?info=" + "succesfully deleted");
 				} else {
 					String errorMessage = "Cannot delete Song from the playlist";
-					response.sendRedirect("playlist.jsp?errorMessage=" + errorMessage);
+					response.sendRedirect(PLAYLIST_JSP_ERROR_MESSAGE + errorMessage);
 				}
 			} else {
 				String errorMessage = "Enter Valid details";
-				response.sendRedirect("playlist.jsp?errorMessage=" + errorMessage);
+				response.sendRedirect(PLAYLIST_JSP_ERROR_MESSAGE + errorMessage);
 			}
 		} catch (IOException | DbException e) {
 			String errorMessage = "Cannot delete Song in the playlist";
-			response.sendRedirect("playlist.jsp?errorMessage=" + errorMessage);
+			response.sendRedirect(PLAYLIST_JSP_ERROR_MESSAGE + errorMessage);
 
 		}
 	}

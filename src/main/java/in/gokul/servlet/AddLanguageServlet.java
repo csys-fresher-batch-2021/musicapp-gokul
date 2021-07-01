@@ -19,6 +19,7 @@ import in.gokul.validation.LanguageValidator;
  */
 @WebServlet("/AddLanguageServlet")
 public class AddLanguageServlet extends HttpServlet {
+	private static final String LANGUAGE_ERROR_MESSAGE = "adminWorks.jsp?addLanguageErrorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -45,15 +46,15 @@ public class AddLanguageServlet extends HttpServlet {
 						String info = "Language " + language + " added Succesfully";
 						response.sendRedirect("adminWorks.jsp?addLanguageInfo=" + info);
 					} else {
-						response.sendRedirect("adminWorks.jsp?addLanguageErrorMessage=" + "Cannot add Language");
+						response.sendRedirect(LANGUAGE_ERROR_MESSAGE + "Cannot add Language");
 					}
 				} else {
-					response.sendRedirect("adminWorks.jsp?addLanguageErrorMessage=" + "Already Exists");
+					response.sendRedirect(LANGUAGE_ERROR_MESSAGE + "Already Exists");
 				}
 			}
 
 			else {
-				response.sendRedirect("adminWorks.jsp?addLanguageErrorMessage=" + "Invalid Details");
+				response.sendRedirect(LANGUAGE_ERROR_MESSAGE + "Invalid Details");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

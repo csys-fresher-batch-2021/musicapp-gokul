@@ -17,6 +17,7 @@ import in.gokul.services.SongServices;
  */
 @WebServlet("/AddSongsServlet")
 public class AddSongsServlet extends HttpServlet {
+	private static final String SONG_ERROR_MESSAGE = "adminWorks.jsp?addSongErrorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -47,19 +48,19 @@ public class AddSongsServlet extends HttpServlet {
 					if (SongServices.addSong(info)) {
 						response.sendRedirect("adminWorks.jsp?addSongInfo=" + "succesfully added");
 					} else {
-						response.sendRedirect("adminWorks.jsp?addSongErrorMessage=" + "Cannot add Song ");
+						response.sendRedirect(SONG_ERROR_MESSAGE + "Cannot add Song ");
 					}
 				} else {
-					response.sendRedirect("adminWorks.jsp?addSongErrorMessage=" + "Song Already Exists");
+					response.sendRedirect(SONG_ERROR_MESSAGE + "Song Already Exists");
 				}
 			} else {
-				response.sendRedirect("adminWorks.jsp?addSongErrorMessage=" + "Invalid details ");
+				response.sendRedirect(SONG_ERROR_MESSAGE + "Invalid details ");
 			}
 
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			response.sendRedirect("adminWorks.jsp?addSongErrorMessage=" + "Invalid Details");
+			response.sendRedirect(SONG_ERROR_MESSAGE + "Invalid Details");
 
 		}
 
