@@ -36,6 +36,7 @@ public class RetriveImageServlet extends HttpServlet {
 			byte[] image = StyleServices.retireveImage(imageName);
 			OutputStream obj = response.getOutputStream();
 			obj.write(image);
+			obj.flush();
 		} catch (ServicesException |IOException e) {
 			String errorMessage = "unable to retireve image";
 			response.sendRedirect("index.jsp?errorMessage=" + errorMessage);

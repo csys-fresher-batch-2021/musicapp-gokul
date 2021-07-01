@@ -51,10 +51,10 @@
 				<div class="card">
 					<div class="card-header">
 						<a class="card-link" data-toggle="collapse"
-							href="#collapse<%=item.getLanguage()%>"> <%=item.getLanguage()%>
+							href="#collapse<%=item.getLanguageName()%>"> <%=item.getLanguageName()%>
 						</a>
 					</div>
-					<script>getAllSongs('<%=item.getLanguage()%>');
+					<script>getAllSongs('<%=item.getLanguageName()%>');
 					
 					function getAllSongs(language){
 						let url = "DisplaySongsServlet";
@@ -89,7 +89,7 @@
 						document.querySelector("#"+language).innerHTML= content;
 					})
 				}</script>
-					<div id="collapse<%=item.getLanguage()%>"
+					<div id="collapse<%=item.getLanguageName()%>"
 						<%if (val == 0) {
 	val++;%> class="collapse show" <%} else%>
 						class="collapse" data-parent="#accordion">
@@ -100,11 +100,11 @@
 								<table class="table table-bordered table-hover">
 									<caption>
 										List of Songs in
-										<%=item.getLanguage()%></caption>
+										<%=item.getLanguageName()%></caption>
 									<thead class="thead-light">
-										<th scope="col">Song_Id</th>
-										<th scope="col">Song_Name</th>
-										<th scope="col">Movie_Name</th>
+										<th scope="col">S.No</th>
+										<th scope="col">Song Name</th>
+										<th scope="col">Movie Name</th>
 										<th scope="col">Play</th>
 										<th scope="col">Add</th>
 										<th scope="col">Likes</th>
@@ -118,7 +118,7 @@
 
 
 									</thead>
-									<tbody id="<%=item.getLanguage()%>">
+									<tbody id="<%=item.getLanguageName()%>">
 									</tbody>
 								</table>
 
@@ -137,7 +137,6 @@
 		<script>
 function deleteSong(songName,movieName,language)
 {
-	console.log(songName);
 	document.location.href="DeleteSongsServlet?songName="+songName+"&movieName="+movieName+"&languageName="+language;
 }
 </script>

@@ -2,22 +2,24 @@ package in.gokul.model;
 
 public class Language {
 
-	private String language;
-    /**
-     * this is constructor
-     * @param language
-     */
-	public Language(String language) {
-		this.language = language;
+	private String languageName;
+
+	@Override
+	public String toString() {
+		return "Language [languageName=" + languageName + "]";
 	}
 
-	public String getLanguage() {
-		return language;
+	public Language(String languageName) {
+	super();
+	this.languageName = languageName;
+}
 
+	public String getLanguageName() {
+		return languageName;
 	}
 
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
 	}
-
+	
 }

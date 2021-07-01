@@ -192,11 +192,11 @@
 							<table class="table table-bordered table-hover">
 								<caption>List of Songs in PlayList</caption>
 								<thead class="thead-light">
-									<th scope="col">Sl.No</th>
-									<th scope="col">Playlist_Name</th>
-									<th scope="col">Song_Name</th>
-									<th scope="col">Movie_Name</th>
-									<th scope="col">Language_Name</th>
+									<th scope="col">S.No</th>
+									<th scope="col">Playlist Name</th>
+									<th scope="col">Song Name</th>
+									<th scope="col">Movie Name</th>
+									<th scope="col">Language Name</th>
 									<th scope="col">Song Released date</th>
 									<th scope="col">Playlist creation date</th>
 									<th scope="col">Play</th>

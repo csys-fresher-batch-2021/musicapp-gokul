@@ -17,6 +17,7 @@ import in.gokul.services.NewUserRegistrationService;
  */
 @WebServlet("/NewUserRegistrationServlet")
 public class NewUserRegistrationServlet extends HttpServlet {
+	private static final String JSP_ERROR_MESSAGE = "NewUserRegistration.jsp?errorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -55,7 +56,7 @@ public class NewUserRegistrationServlet extends HttpServlet {
 				}
 			} else {
 				String errorMessage = "Invalid Registration Credentials";
-				response.sendRedirect("NewUserRegistration.jsp?errorMessage=" + errorMessage);
+				response.sendRedirect(JSP_ERROR_MESSAGE + errorMessage);
 
 			}
 
@@ -63,11 +64,11 @@ public class NewUserRegistrationServlet extends HttpServlet {
 
 			e.printStackTrace();
 			String errorMessage = e.getMessage();
-			response.sendRedirect("NewUserRegistration.jsp?errorMessage=" + errorMessage);
+			response.sendRedirect(JSP_ERROR_MESSAGE + errorMessage);
 
 		}
 		catch (NumberFormatException e) {
-			response.sendRedirect("NewUserRegistration.jsp?errorMessage=" + e.getMessage());
+			response.sendRedirect(JSP_ERROR_MESSAGE + e.getMessage());
 
 		
 		}

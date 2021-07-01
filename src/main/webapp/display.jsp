@@ -57,11 +57,11 @@
 			for(let input of languages){
 				count++;
 				content += "<tr><td>" + count + 
-				"</td><td>" + input.language +
+				"</td><td>" + input.languageName +
 				"</td><td>" + "<button type=\"button\" onclick=\"showAllSongs()\" class=\"btn btn-info\">show</button>"+
 				
 				 <%if (type == admin) {%>
-				"</td><td><button type=\"button\" onclick=\"deleteLanguage('"+input.language+"')\" class=\"btn btn-danger\">Delete</button>";
+				"</td><td><button type=\"button\" onclick=\"deleteLanguage('"+input.languageName+"')\" class=\"btn btn-danger\">Delete</button>";
 				<%} else {%>
 				"</td>";
 				<%}%>

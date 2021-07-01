@@ -114,12 +114,12 @@
 			</div>
 			<jsp:include page="message.jsp"></jsp:include>
 
-			<form action="AddSongsSourceServlet">
+			<form action="AddSongsSourceServlet" enctype="multipart/form-data" method="POST">
 				<label for="songName">Song Name</label> <br> <input type="text"
 					name="songName" id="songName" placeholder="Enter songName" required>
 				<br> <br> <label for="songSource"><Strong>Select
 						a song:</Strong></label><br> <input type="file" id="songSource"
-					name="songSource" accept="mp3/*"><br> <br> <label
+					name="songSource" accept="audio/*"><br> <br> <label
 					for="imageSource"><Strong>Select a image:</Strong></label><br>
 				<input type="file" id="imageSource" name="imageSource"
 					accept="image/*"><br> <br>

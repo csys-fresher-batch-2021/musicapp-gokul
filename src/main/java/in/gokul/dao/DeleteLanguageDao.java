@@ -18,7 +18,7 @@ public class DeleteLanguageDao {
 			connection=ConnectionUtil.getConnection();
 			String sql="delete from language where language_name=?";
 			pst=connection.prepareStatement(sql);
-			pst.setString(1,language.getLanguage());
+			pst.setString(1,language.getLanguageName());
 			int result=pst.executeUpdate();
 			deleted=(result==1);
 			return deleted;

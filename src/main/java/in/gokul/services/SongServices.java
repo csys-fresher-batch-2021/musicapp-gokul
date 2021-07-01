@@ -4,7 +4,7 @@ import java.util.List;
 
 import in.gokul.dao.SongsDao;
 import in.gokul.dto.LikedSongsDto;
-import in.gokul.dto.PlaySongsDto;
+import in.gokul.dto.SongsDto;
 import in.gokul.exception.DbException;
 import in.gokul.exception.ServicesException;
 import in.gokul.model.Song;
@@ -105,7 +105,7 @@ public class SongServices {
 	 * @param song
 	 * @return
 	 */
-	public static boolean addSongSource(PlaySongsDto song) {
+	public static boolean addSongSource(SongsDto song) {
 		SongsDao dao = new SongsDao();
 
 		return dao.addSongSourceAndImage(song);
